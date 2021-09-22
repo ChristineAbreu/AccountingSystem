@@ -45,7 +45,7 @@ public class DemoController {
             @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)})
     public ResponseEntity<GeneralResponse<List<AccountTypeDto>>> getAll()
              {
-
+list
                  List<AccountTypeDto> accountTypes = fetchAccountTypeFlow.getAllAccountTypes();
 
         GeneralResponse<List<AccountTypeDto>> response = new GeneralResponse<>(true, accountTypes);
