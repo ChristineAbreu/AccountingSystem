@@ -29,6 +29,10 @@ private LocalDate creationDate;
         this.setCreationDate(accountType.getCreationDate());
     }
 
+    public AccountTypeDto() {
+
+    }
+
 
     @ApiModelProperty(position = 1,
             value = "AccountType Mnemonic",
