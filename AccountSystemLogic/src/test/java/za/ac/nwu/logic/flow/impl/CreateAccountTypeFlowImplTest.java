@@ -34,6 +34,7 @@ public class CreateAccountTypeFlowImplTest {
     @Test
     public void create() {
         Mockito.when(translator.create(any(AccountTypeDto.class))).thenReturn(null);
-        flow.create(new AccountTypeDto());
+       AccountTypeDto result = flow.create( new AccountTypeDto());
+        assertNull(result);
     }
 }
