@@ -38,12 +38,20 @@ public class CreateAccountTypeFlowImplTest {
 
     @Test
     public void create() {
-        AccountTypeDto  accountTypeDto = new AccountTypeDto();
-        AccountTypeDto  accountTypeDto2 = new AccountTypeDto("mnemonic2","Name2", LocalDate.parse("2020-01-01"));
-      when(translator.create(any(AccountTypeDto.class))).thenReturn(accountTypeDto2);
-AccountTypeDto result = flow.create(accountTypeDto);
-        assertNotNull(result);
-        verify(translator,times(2)).create(eq(accountTypeDto));
-        verify(translator,times(1)).create(eq(accountTypeDto2));
+        doThrow(new RuntimeException()).when(translator).someMethod();
+
+        newMethod();
+
+        verify(translator,times(2)).someMethod();
+        verify(translator,never()).create(any(AccountTypeDto.class));
+    }
+
+    private void newMethod() {
+        try {
+            flow.create(new AccountTypeDto());
+            fail("Should throw an exception");
+        }catch (Exception e){
+
+        }
     }
 }
