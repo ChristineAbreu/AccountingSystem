@@ -26,6 +26,7 @@ public interface AccountTypeRepository extends JpaRepository<AccountType, Long> 
             "MNEMONIC"+
             "WHERE MNEMONIC = :mnemonic")
     AccountType getAccountTypeByMnemonic(String mnemonic);
+
     @Query(value = "SELECT new za.ac.nwu.domain.dto.AccountTypeDto("+
             "at.mnemonic,"+
             "at.accountTypeName,"+
