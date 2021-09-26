@@ -38,12 +38,12 @@ public class CreateAccountTypeFlowImplTest {
 
     @Test
     public void create() {
-        AccountTypeDto  accountTypeDto = new AccountTypeDto("mnemonic","Name", LocalDate.parse("2020-01-01"));
+        AccountTypeDto  accountTypeDto = new AccountTypeDto();
         AccountTypeDto  accountTypeDto2 = new AccountTypeDto("mnemonic2","Name2", LocalDate.parse("2020-01-01"));
-      when(translator.create(eq(accountTypeDto))).thenReturn(accountTypeDto2);
+      when(translator.create(any(AccountTypeDto.class))).thenReturn(accountTypeDto2);
 AccountTypeDto result = flow.create(accountTypeDto);
-        //assertNull(result);
-        verify(translator,times(1)).create(eq(accountTypeDto));
+        assertNotNull(result);
+        verify(translator,times(2)).create(eq(accountTypeDto));
         verify(translator,times(1)).create(eq(accountTypeDto2));
     }
 }
