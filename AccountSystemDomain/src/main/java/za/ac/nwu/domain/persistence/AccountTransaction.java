@@ -14,7 +14,7 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @Entity
-@Table(name = "DEMO_ACCOUNT_TYPE", schema = "VITRSA_SANDBOX")
+@Table(name = "ACCOUNT_TYPE", schema = "VITRSA_SANDBOX")
 public class AccountTransaction implements Serializable{
 
 
@@ -26,8 +26,11 @@ public class AccountTransaction implements Serializable{
     private Long memberId;
     private Long amount;
     private Long transactionDate;
+    private  AccountTransactionDetails details;
 
+public AccountTransaction(){
 
+}
     public AccountTransaction(Long transactionId, Long accountType, Long memberId, Long amount, Long transactionDate) {
         this.transactionId = transactionId;
         this.accountType = accountType;
@@ -39,8 +42,8 @@ public class AccountTransaction implements Serializable{
 
 
     @Id
-@SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "VITRSA_SANDBOX>VIT_RSA_GENERIC_SEQ",allocationSize = 1)
-@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VIT_RSA_GENERIC_SEQ")
+@SequenceGenerator(name = "GENERIC_SEQ", sequenceName = "VITRSA_SANDBOX.GENERIC_SEQ",allocationSize = 1)
+@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GENERIC_SEQ")
     @Column(name = "TX_ID")
     public Long getTransactionId() {
         return transactionId;
