@@ -2,6 +2,7 @@ package za.ac.nwu.domain.persistence;
 
 
 import lombok.*;
+import za.ac.nwu.domain.dto.AccountTypeDto;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -40,6 +41,9 @@ public AccountTransaction(){
         this.transactionDate = transactionDate;
     }
 
+    public AccountTransaction(Long transactionId, AccountType accountType, Long memberId, Long amount, LocalDate transactionDate) {
+
+    }
 
 
     @Id
@@ -112,6 +116,10 @@ public AccountTransaction(){
                 ", amount=" + amount +
                 ", transactionDate=" + transactionDate +
                 '}';
+    }
+
+    public AccountTypeDto getMnemonic() {
+        return null;
     }
 }
 

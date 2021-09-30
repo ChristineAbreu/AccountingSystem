@@ -9,12 +9,12 @@ import java.time.LocalDate;
 public class AccountTransactionDto implements Serializable {
 
 
-    private AccountTransactionDetailsDto details;
     private Long transactionId;
     private String accountTypeMnemonic;
     private Long memberId;
     private Long amount;
     private LocalDate transactionDate;
+    private AccountTransactionDetailsDto details;
 
 
     public AccountTransactionDto() {
@@ -38,24 +38,53 @@ public class AccountTransactionDto implements Serializable {
         this.details = details;
     }
 
-    public AccountTransactionDto(AccountTransaction accountTransaction) {
+    public AccountTransaction AccountTransactionDto(AccountTransaction accountTransaction, AccountType accountType) {
         this.transactionId = accountTransaction.getTransactionId();
-        this.accountTypeMnemonic = accountTransaction.getAccountType().getMnemonic();
+       // this.accountTypeMnemonic = accountTransaction.getAccountType().getMnemonic();
         this.memberId = accountTransaction.getMemberId();
         this.amount = accountTransaction.getAmount();
         this.transactionDate = accountTransaction.getTransactionDate();
+        if(null != accountTransaction.getDetails()){
+            return new AccountTransaction(this.getTransactionId(), accountType, this.getMemberId(),
+                    this.getAmount(), this.getTransactionDate());
+        }
+        return accountTransaction;
     }
 
-
-    public void setTransactionId(Object o) {
+    private LocalDate getTransactionDate() {return transactionDate;
     }
+
+    public void setTransactionDate(LocalDate transactionDate) {
+        this.transactionDate = transactionDate;
+    }
+
+    private Long getAmount() {return amount;
+    }
+
+    public void setAmount(Long amount) {
+        this.amount = amount;
+    }
+
+    private Long getMemberId() { return memberId;
+    }
+
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
+    }
+
+    private Long getTransactionId() { return transactionId;
+    }
+    public void setTransactionId(Long transactionId) {
+        this.transactionId = transactionId;
+    }
+
 
     public AccountTransactionDetailsDto getDetails() {
-        return null;
+        return details;
     }
 
     public AccountTransaction buildAccountTransaction(AccountType accountType) {
-        return null;
+        return new AccountTransaction(this.getTransactionId(),accountType,this.getMemberId(),this.getAmount(),this.getTransactionDate());
     }
 
 
@@ -65,6 +94,6 @@ public class AccountTransactionDto implements Serializable {
     }
 
     public String getAccountTypeMnemonic() {
-        return null;
+        return accountTypeMnemonic;
     }
 }

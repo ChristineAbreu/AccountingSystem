@@ -62,12 +62,12 @@ public class DemoControllerTest {
     @Test
     public void getAll() throws Exception {
         String expectedResponse = "{\"successful\":true,\"payload\":[" +
-                "{\"mnemonic\":\"MILES\",\"accountTypeName\":\"Miles account type\",\"creationDate\":[2020,1,1]}," +
-                "{\"mnemonic\":\"PLAY\",\"accountTypeName\":\"Play account type\",\"creationDate\":[2021,4,1]}]}";
+              "{\"mnemonic\":\"MILES\",\"accountTypeName\":\"Miles account type\",\"creationDate\":[2020,1,1]}," +
+               "{\"mnemonic\":\"PLAY\",\"accountTypeName\":\"Play account type\",\"creationDate\":[2021,4,1]}]}";
         List<AccountTypeDto> accountTypes = new ArrayList<>();
-        accountTypes.add(new AccountTypeDto("MILES", "Miles account type",
+       accountTypes.add(new AccountTypeDto("MILES", "Miles account type",
                 LocalDate.parse("2020-01-01")));
-        accountTypes.add(new AccountTypeDto("PLAY", "Play account type",
+       accountTypes.add(new AccountTypeDto("PLAY", "Play account type",
                 LocalDate.parse("2021-04-01")));
 
         when(fetchAccountTypeFlow.getAllAccountTypes()).thenReturn(accountTypes);
@@ -106,8 +106,10 @@ public class DemoControllerTest {
     }
     @Test
     public void deleteAccountType() throws Exception {
-        String expectedResponse = "{\"successful\":true,\"payload\":" +
-                "{\"mnemonic\":\"PLAY\",\"accountTypeName\":\"Play account type\",\"creationDate\":[2021,4,1]}}";
+        String expectedResponse =
+                "{\"successful\":true,\"payload\":" +
+                        "{\"mnemonic\":\"PLAY\",\"accountTypeName\":\"Play account type\",\"creationDate\":[2020,4,1]}}";
+
         AccountTypeDto accountType = new AccountTypeDto("PLAY", "Play account type", LocalDate.parse("2021-04-01"));
 
                 when(modifyAccountTypeFlow.deleteAccountType(anyString())).thenReturn(accountType);
