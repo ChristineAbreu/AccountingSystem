@@ -22,7 +22,7 @@ public class AccountTransactionDetails implements Serializable {
 @Column(name = "ACCOUNT_TX_DETAILS_ID")
 public Long getAccountTransactionDetailsId(){ return accountTransactionDetailsId;}
 
-@OneToOne (fetch = FetchType.LAZY)
+//@OneToOne (fetch = FetchType.LAZY)
 @JoinColumn(name = "TX_ID")
 public AccountTransaction getAccountTransaction(){return accountTransaction; }
 
@@ -48,7 +48,15 @@ public  AccountTransactionDetails(AccountTransaction accountTransaction, String 
 
     public void setPartnerName(String partnerName){ this.partnerName = partnerName;}
 
-public void setAccountTransaction(AccountTransaction accountTransaction){
+    public void setAccountTransactionDetailsId(Long accountTransactionDetailsId) {
+        this.accountTransactionDetailsId = accountTransactionDetailsId;
+    }
+
+    public void setNumberOfItems(Long numberOfItems) {
+        this.numberOfItems = numberOfItems;
+    }
+
+    public void setAccountTransaction(AccountTransaction accountTransaction){
 
 }
 }

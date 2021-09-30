@@ -33,6 +33,12 @@ private LocalDate creationDate;
 
     }
 
+    public AccountTypeDto(AccountTypeDto accountType) {
+        this.setMnemonic(accountType.getMnemonic());
+        this.setAccountTypeName(accountType.getAccountTypeName());
+        this.setCreationDate(accountType.getCreationDate());
+    }
+
 
     @ApiModelProperty(position = 1,
             value = "AccountType Mnemonic",
