@@ -2,12 +2,15 @@ package za.ac.nwu.domain.persistence;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "ACCOUNT_TX_DETAILS", schema = "VITRSA_SANDBOX")
-public class AccountTransactionDetails {
+public class AccountTransactionDetails implements Serializable {
 
-    Long accountTransactoinDetailsId;
+    private static final long serialVersionUID = 4562890339977033624L;
+
+    Long accountTransactionDetailsId;
     AccountTransaction accountTransaction;
     String partnerName;
     Long numberOfItems;
@@ -17,7 +20,7 @@ public class AccountTransactionDetails {
 @SequenceGenerator(name = "ACCOUNT_SEQ", sequenceName = "VITRSA_SANDBOX.ACCOUNT_SEQ",allocationSize = 1)
 @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "ACCOUNT_SEQ")
 @Column(name = "ACCOUNT_TX_DETAILS_ID")
-public Long getAccountTransactoinDetailsId(){ return accountTransactoinDetailsId;}
+public Long getAccountTransactionDetailsId(){ return accountTransactionDetailsId;}
 
 @OneToOne (fetch = FetchType.LAZY)
 @JoinColumn(name = "TX_ID")
@@ -25,9 +28,6 @@ public AccountTransaction getAccountTransaction(){return accountTransaction; }
 
 @Column(name = "PARTNER_NAME")
 public String getPartnerName() {return partnerName;}
-
-@Column(name = "PARTNER_NAME")
-public String getPartnetName(){return partnerName;}
 
 @Column(name = "NUMBER_OF_ITEMS")
 public Long getNumberOfItems() {return numberOfItems;}

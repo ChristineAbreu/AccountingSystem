@@ -3,7 +3,6 @@ package za.ac.nwu.domain.persistence;
 
 import lombok.*;
 
-import javax.annotation.Generated;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -81,7 +80,7 @@ public AccountTransaction(){
     }
 
     @Column(name = "TX_DATE")
-    public Long getTransactionDate() {
+    public LocalDate getTransactionDate() {
         return transactionDate;
     }
 
