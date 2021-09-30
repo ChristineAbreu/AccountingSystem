@@ -1,7 +1,7 @@
 package za.ac.nwu.domain.dto;
 
 import za.ac.nwu.domain.persistence.AccountTransaction;
-import za.ac.nwu.domain.persistence.AccountTransactionDetails;
+import za.ac.nwu.domain.persistence.AccountType;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -17,8 +17,7 @@ public class AccountTransactionDto implements Serializable {
     private LocalDate transactionDate;
 
 
-
-    public AccountTransactionDto(){
+    public AccountTransactionDto() {
 
     }
 
@@ -30,7 +29,7 @@ public class AccountTransactionDto implements Serializable {
         this.transactionDate = transactionDate;
     }
 
-    public AccountTransactionDto(Long transactionId, String accountTypeMnemonic, Long memberId, Long amount, LocalDate transactionDate,AccountTransactionDetailsDto details) {
+    public AccountTransactionDto(Long transactionId, String accountTypeMnemonic, Long memberId, Long amount, LocalDate transactionDate, AccountTransactionDetailsDto details) {
         this.transactionId = transactionId;
         this.accountTypeMnemonic = accountTypeMnemonic;
         this.memberId = memberId;
@@ -39,11 +38,33 @@ public class AccountTransactionDto implements Serializable {
         this.details = details;
     }
 
-    public AccountTransactionDto(AccountTransaction accountTransaction){
+    public AccountTransactionDto(AccountTransaction accountTransaction) {
         this.transactionId = accountTransaction.getTransactionId();
         this.accountTypeMnemonic = accountTransaction.getAccountType().getMnemonic();
         this.memberId = accountTransaction.getMemberId();
         this.amount = accountTransaction.getAmount();
         this.transactionDate = accountTransaction.getTransactionDate();
+    }
+
+
+    public void setTransactionId(Object o) {
+    }
+
+    public AccountTransactionDetailsDto getDetails() {
+        return null;
+    }
+
+    public AccountTransaction buildAccountTransaction(AccountType accountType) {
+        return null;
+    }
+
+
+
+    public void setAccountTypeMnemonic(String accountTypeMnemonic) {
+        this.accountTypeMnemonic = accountTypeMnemonic;
+    }
+
+    public String getAccountTypeMnemonic() {
+        return null;
     }
 }

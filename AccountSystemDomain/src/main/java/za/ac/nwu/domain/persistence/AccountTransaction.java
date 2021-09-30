@@ -11,7 +11,7 @@ import java.util.Objects;
 @Setter
 @EqualsAndHashCode
 @ToString
-@NoArgsConstructor
+
 @Entity
 @Table(name = "ACCOUNT_TYPE", schema = "VITRSA_SANDBOX")
 public class AccountTransaction implements Serializable{
@@ -24,13 +24,15 @@ public class AccountTransaction implements Serializable{
     private Long accountType;
     private Long memberId;
     private Long amount;
-    private Long transactionDate;
-    private  AccountTransactionDetails details;
+    private LocalDate transactionDate;
+    @ManyToOne
+    @JoinColumn(name = "details_account_tx_details_id")
+    private AccountTransactionDetails details;
 
 public AccountTransaction(){
 
 }
-    public AccountTransaction(Long transactionId, Long accountType, Long memberId, Long amount, Long transactionDate) {
+    public AccountTransaction(Long transactionId, Long accountType, Long memberId, Long amount, LocalDate transactionDate) {
         this.transactionId = transactionId;
         this.accountType = accountType;
         this.memberId = memberId;
@@ -84,7 +86,7 @@ public AccountTransaction(){
         return transactionDate;
     }
 
-    public void setTransactionDate(Long transactionDate) {
+    public void setTransactionDate(LocalDate transactionDate) {
         this.transactionDate = transactionDate;
     }
 

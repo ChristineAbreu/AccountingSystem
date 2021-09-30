@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import za.ac.nwu.domain.dto.AccountTransactionDto;
-import za.ac.nwu.domain.dto.AccountTypeDto;
 import za.ac.nwu.domain.service.GeneralResponse;
 import za.ac.nwu.logic.flow.CreateAccountTransactionFlow;
 import za.ac.nwu.logic.flow.FetchAccountTransactionFlow;

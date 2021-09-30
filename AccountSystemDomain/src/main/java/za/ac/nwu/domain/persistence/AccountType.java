@@ -10,9 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "DEMO_ACCOUNT_TYPE", schema = "VITRSA_SANDBOX")
 public class AccountType implements Serializable{
-    @Id
-    @Column(name = "id", nullable = false)
-    private Long id;
+
 
     @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "VITRSA_SANDBOX.VIT_RSA_GENERIC_SEQ", allocationSize = 1 )
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VIT_RSA_GENERIC_SEQ")
@@ -24,6 +22,9 @@ public class AccountType implements Serializable{
 
 
     private String accountTypeName;
+    @Id
+    @Column(name = "id", nullable = false)
+    private Long id;
 
 
     //@JsonSerialize(using = LocalDateSerializer.class)
