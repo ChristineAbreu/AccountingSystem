@@ -6,6 +6,7 @@ import za.ac.nwu.domain.persistence.AccountType;
 import org.springframework.data.jpa.repository.Query;
 import za.ac.nwu.domain.dto.AccountTypeDto;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Repository
@@ -36,9 +37,9 @@ public interface AccountTypeRepository extends JpaRepository<AccountType, Long> 
     "WHERE at. mnemonic =: mnemonic")
     AccountTypeDto getAccountTypeDtoByMnemonic(String mnemonic);
 
-    AccountType findByCreationDate(Long creationDate);
+    AccountType findByCreationDate(LocalDate creationDate);
     AccountType findByAccountTypeName(Long accountTypeName);
-    AccountType findByMnemonic(Long mnemonic);
+    AccountType findByMnemonic(String mnemonic);
     AccountType findByAccountTypeId(Long accountTypeId);
     @Override
     Optional<AccountType> findById(Long aLong);
