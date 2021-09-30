@@ -15,7 +15,7 @@ import za.ac.nwu.translator.impl.AccountTransactionTranslator;
 @Component
 public class CreateAccountTransactionFlowImpl implements CreateAccountTransactionFlow {
 
-    private static  final Logger LOGGER = LoggerFactory.getLogger(CreateAccountTransactionFlowImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CreateAccountTransactionFlowImpl.class);
 
     private final AccountTransactionTranslator accountTransactionTranslator;
     private final AccountTransactionDetailsTranslator accountTransactionDetailsTranslator;
@@ -32,31 +32,41 @@ public class CreateAccountTransactionFlowImpl implements CreateAccountTransactio
 
     @Override
     public AccountTransactionDto create(AccountTransactionDto accountTransactionDto) {
-        LOGGER.info("The input object was {}", accountTransactionDto);
-        accountTransactionDto.setTransactionId(null);
+        if (LOGGER.isInfoEnabled()) {
+            String outputForLogging = "null";
+            if ((null != accountTransactionDto) && (null != accountTransactionDto.getDetails())) {
+outputForLogging = accountTransactionDto.getDetails().toString();
+            }
 
-        AccountType accountType = fetchAccountTypeFlow.getAccountTypeDbEntityByMnemonic(
-                accountTransactionDto.getAccountTypeMnemonic());
-        LOGGER.info("Got AccountType for {} and the AccountTypeID is {}", accountTransactionDto.getAccountTypeMnemonic(),accountType.getAccountTypeId());
-        AccountTransaction accountTransaction = accountTransactionDto.buildAccountTransaction(accountType);
 
-        AccountTransaction createdAccountTransaction = accountTransactionTranslator.save(accountTransaction);
+            LOGGER.info("The input object was {} and the Details are {}", accountTransactionDto.outputForLogging);
+        }
+            AccountType accountType = fetchAccountTypeFlow.getAccountTypeDbEntityByMnemonic(
+                    accountTransactionDto.getAccountTypeMnemonic());
+            LOGGER.debug("Got AccountType for {} and the AccountTypeID is {}", accountTransactionDto.getAccountTypeMnemonic(), accountType.getAccountTypeId());
+            if (LOGGER.isInfoEnabled()) {
+                LOGGER.info("Got AccountType for {} and the AccountTypeID is {}", accountTransactionDto.getAccountTypeMnemonic(), accountType.getAccountTypeId());
+            }
+            AccountTransaction accountTransaction = accountTransactionDto.buildAccountTransaction(accountType);
 
-        if (null != accountTransactionDto.getDetails()) {
-            AccountTransactionDetails accountTransactionDetails = accountTransactionDto.getDetails().buildAccountTransactionDetails(createdAccountTransaction);
-            accountTransactionDetailsTranslator.save(accountTransactionDetails);
+            AccountTransaction createdAccountTransaction = accountTransactionTranslator.save(accountTransaction);
+
+            if (null != accountTransactionDto.getDetails()) {
+                AccountTransactionDetails accountTransactionDetails = accountTransactionDto.getDetails().buildAccountTransactionDetails(createdAccountTransaction);
+                accountTransactionDetailsTranslator.save(accountTransactionDetails);
+            }
+
+            if (null != accountTransactionDto.getDetails()) {
+                AccountTransactionDetails accountTransactionDetails = accountTransactionDto.getDetails().buildAccountTransactionDetails(createdAccountTransaction);
+                createdAccountTransaction.setDetails(accountTransactionDetails);
+                accountTransactionDetailsTranslator.save(accountTransactionDetails);
+            }
+            AccountTransactionDto results = new AccountTransactionDto(createdAccountTransaction);
+            LOGGER.warn("The return object is {}", results);
+            return results;
         }
 
-        if (null != accountTransactionDto.getDetails()) {
-            AccountTransactionDetails accountTransactionDetails = accountTransactionDto.getDetails().buildAccountTransactionDetails(createdAccountTransaction);
-            createdAccountTransaction.setDetails(accountTransactionDetails);
-            accountTransactionDetailsTranslator.save(accountTransactionDetails);
-        }
-        AccountTransactionDto results = new AccountTransactionDto(createdAccountTransaction);
-        LOGGER.info("The return object is {}", results);
-        return results;
     }
 
-}
 
 

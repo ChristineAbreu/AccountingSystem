@@ -9,12 +9,16 @@ import java.time.LocalDate;
 public class AccountTransactionDto implements Serializable {
 
 
+
     private Long transactionId;
     private String accountTypeMnemonic;
     private Long memberId;
     private Long amount;
     private LocalDate transactionDate;
     private AccountTransactionDetailsDto details;
+    public Throwable outputForLogging;
+
+
 
 
     public AccountTransactionDto() {
