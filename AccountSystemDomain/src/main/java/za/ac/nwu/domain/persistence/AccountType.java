@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "DEMO_ACCOUNT_TYPE", schema = "VITRSA_SANDBOX")
+@Table(name = "ACCOUNT_TYPE", schema = "VITRSA_SANDBOX")
 public class AccountType implements Serializable{
 
 
