@@ -37,7 +37,7 @@ public class CreateAccountTransactionFlowImpl implements CreateAccountTransactio
 
         AccountType accountType = fetchAccountTypeFlow.getAccountTypeDbEntityByMnemonic(
                 accountTransactionDto.getAccountTypeMnemonic());
-        LOGGER.info("Got AccountType for {} and the AccountTypeID is {}", accountTransactionDto.getAccountTypeMnemonic(),accountType.getAccountTypeId();
+        LOGGER.info("Got AccountType for {} and the AccountTypeID is {}", accountTransactionDto.getAccountTypeMnemonic(),accountType.getAccountTypeId());
         AccountTransaction accountTransaction = accountTransactionDto.buildAccountTransaction(accountType);
 
         AccountTransaction createdAccountTransaction = accountTransactionTranslator.save(accountTransaction);
