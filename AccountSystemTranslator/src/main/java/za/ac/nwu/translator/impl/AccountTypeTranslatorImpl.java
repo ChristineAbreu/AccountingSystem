@@ -1,5 +1,6 @@
 package za.ac.nwu.translator.impl;
 
+import org.jetbrains.annotations.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +18,7 @@ public class AccountTypeTranslatorImpl implements AccountTypeTranslator {
 
     private final AccountTypeRepository accountTypeRepository;
 
+    @Contract(pure = true)
     @Autowired
     public AccountTypeTranslatorImpl(AccountTypeRepository accountTypeRepository) {
         this.accountTypeRepository = accountTypeRepository;

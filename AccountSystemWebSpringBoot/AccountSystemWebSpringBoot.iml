@@ -36,6 +36,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.1.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aspects:5.1.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.oracle.database.jdbc:ojdbc8:21.1.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains:annotations:22.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:2.1.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:2.1.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.1.6.RELEASE" level="project" />
