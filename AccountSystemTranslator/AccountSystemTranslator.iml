@@ -49,6 +49,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-aspects:5.1.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.oracle.database.jdbc:ojdbc8:21.1.0.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.hsqldb:hsqldb:2.4.1" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains:annotations:22.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:5.1.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.1.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.1.8.RELEASE" level="project" />

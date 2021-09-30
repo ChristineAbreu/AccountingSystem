@@ -33,6 +33,9 @@ private LocalDate creationDate;
 
     }
 
+    public AccountTypeDto(AccountTypeDto accountType) {
+    }
+
 
     @ApiModelProperty(position = 1,
             value = "AccountType Mnemonic",
