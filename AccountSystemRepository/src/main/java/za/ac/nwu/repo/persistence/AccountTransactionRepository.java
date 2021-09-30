@@ -11,4 +11,5 @@ public interface AccountTransactionRepository extends JpaRepository<AccountTrans
     AccountTransaction findByMemberId(Long memberId);
     AccountTransaction findByAccountType(Long accountType);
     AccountTransaction findByTransactionId(Long transactionId);
+
 }

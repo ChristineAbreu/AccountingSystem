@@ -27,7 +27,7 @@ public class AccountTransaction implements Serializable{
     private Long amount;
     private LocalDate transactionDate;
 
-    @ManyToOne
+    //@ManyToOne
     @JoinColumn(name = "details_account_tx_details_id")
     private AccountTransactionDetails details;
 
@@ -59,7 +59,7 @@ public AccountTransaction(){
         this.transactionId = transactionId;
     }
 
-@ManyToMany(fetch = FetchType.LAZY)
+//@ManyToMany(fetch = FetchType.LAZY)
     @JoinColumn (name = "ACCOUNT_TYPE_ID")
     public Long getAccountType() {
         return accountType;

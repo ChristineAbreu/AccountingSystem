@@ -1,5 +1,10 @@
 package za.ac.nwu.domain.persistence;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -23,8 +28,8 @@ public class AccountType implements Serializable{
     private Long id;
 
 
-    //@JsonSerialize(using = LocalDateSerializer.class)
-   // @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+   @JsonDeserialize(using = LocalDateDeserializer.class)
 
     private LocalDate creationDate;
     private Set<AccountTransaction> AccountTransactions;

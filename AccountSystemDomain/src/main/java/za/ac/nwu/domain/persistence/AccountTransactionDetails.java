@@ -22,7 +22,7 @@ public class AccountTransactionDetails implements Serializable {
 @Column(name = "ACCOUNT_TX_DETAILS_ID")
 public Long getAccountTransactionDetailsId(){ return accountTransactionDetailsId;}
 
-@OneToOne (fetch = FetchType.LAZY)
+//@OneToOne (fetch = FetchType.LAZY)
 @JoinColumn(name = "TX_ID")
 public AccountTransaction getAccountTransaction(){return accountTransaction; }
 
