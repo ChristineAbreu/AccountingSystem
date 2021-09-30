@@ -39,7 +39,13 @@ public class CreateAccountTransactionFlowImpl implements CreateAccountTransactio
             AccountTransactionDetails accountTransactionDetails = accountTransactionDto.getDetails().buildAccountTransactionDetails(createdAccountTransaction);
             accountTransactionDetailsTranslator.save(accountTransactionDetails);
         }
-        return accountTransactionDto;
+
+        if (null != accountTransactionDto.getDetails()) {
+            AccountTransactionDetails accountTransactionDetails = accountTransactionDto.getDetails().buildAccountTransactionDetails(createdAccountTransaction);
+            createdAccountTransaction.setDetails(accountTransactionDetails);
+            accountTransactionDetailsTranslator.save(accountTransactionDetails);
+        }
+        return new AccountTransactionDto(createdAccountTransaction);
     }
 
 }

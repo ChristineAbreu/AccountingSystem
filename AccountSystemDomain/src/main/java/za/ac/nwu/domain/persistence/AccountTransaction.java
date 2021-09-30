@@ -26,6 +26,7 @@ public class AccountTransaction implements Serializable{
     private Long memberId;
     private Long amount;
     private LocalDate transactionDate;
+
     @ManyToOne
     @JoinColumn(name = "details_account_tx_details_id")
     private AccountTransactionDetails details;

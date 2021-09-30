@@ -29,6 +29,6 @@ public class FetchAccountTransactionFlowImpl implements FetchAccountTransactionF
     @Override
     public AccountTransactionDto getAccountTransactionById(Long transactionId) {
         AccountTransaction accountTransaction = translator.getAccountTransactionByPk(transactionId);
-        return null!= accountTransaction? new AccountTransactionDto(accountTransaction) :null;
+        return null!= accountTransaction? new AccountTransactionDto(accountTransaction) : null;
     }
 }

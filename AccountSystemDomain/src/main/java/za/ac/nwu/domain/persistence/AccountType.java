@@ -16,11 +16,7 @@ public class AccountType implements Serializable{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VIT_RSA_GENERIC_SEQ")
 
     private Long accountTypeId;
-
-
     private String mnemonic;
-
-
     private String accountTypeName;
     @Id
     @Column(name = "id", nullable = false)
@@ -89,8 +85,9 @@ public class AccountType implements Serializable{
     }
 
 @OneToMany(targetEntity = AccountTransaction.class, fetch = FetchType.LAZY, mappedBy = "accountType", orphanRemoval = true, cascade = CascadeType.PERSIST)
-public
-    Set<AccountTransaction> getAccountTransactions;
+public Set<AccountTransaction> getAccountTransactions(){
+        return AccountTransactions;
+}
 
 
  public void setAccountTransactions(Set<AccountTransaction> accountTransactions){

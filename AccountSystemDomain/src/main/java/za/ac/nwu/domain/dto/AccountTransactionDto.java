@@ -38,6 +38,9 @@ public class AccountTransactionDto implements Serializable {
         this.details = details;
     }
 
+    public AccountTransactionDto(AccountTransaction createdAccountTransaction) {
+    }
+
     public AccountTransaction AccountTransactionDto(AccountTransaction accountTransaction, AccountType accountType) {
         this.transactionId = accountTransaction.getTransactionId();
        // this.accountTypeMnemonic = accountTransaction.getAccountType().getMnemonic();
