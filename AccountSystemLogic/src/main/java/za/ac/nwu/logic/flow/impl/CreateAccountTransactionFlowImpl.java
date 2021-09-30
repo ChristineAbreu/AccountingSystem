@@ -1,5 +1,7 @@
 package za.ac.nwu.logic.flow.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import za.ac.nwu.domain.dto.AccountTransactionDto;
 import za.ac.nwu.domain.persistence.AccountTransaction;
@@ -12,6 +14,8 @@ import za.ac.nwu.translator.impl.AccountTransactionTranslator;
 
 @Component
 public class CreateAccountTransactionFlowImpl implements CreateAccountTransactionFlow {
+
+    private static  final Logger LOGGER = LoggerFactory.getLogger(CreateAccountTransactionFlowImpl.class);
 
     private final AccountTransactionTranslator accountTransactionTranslator;
     private final AccountTransactionDetailsTranslator accountTransactionDetailsTranslator;
@@ -28,9 +32,12 @@ public class CreateAccountTransactionFlowImpl implements CreateAccountTransactio
 
     @Override
     public AccountTransactionDto create(AccountTransactionDto accountTransactionDto) {
+        LOGGER.info("The input object was {}", accountTransactionDto);
         accountTransactionDto.setTransactionId(null);
 
-        AccountType accountType = fetchAccountTypeFlow.getAccountTypeDbEntityByMnemonic(accountTransactionDto.getAccountTypeMnemonic());
+        AccountType accountType = fetchAccountTypeFlow.getAccountTypeDbEntityByMnemonic(
+                accountTransactionDto.getAccountTypeMnemonic());
+        LOGGER.info("Got AccountType for {} and the AccountTypeID is {}", accountTransactionDto.getAccountTypeMnemonic(),accountType.getAccountTypeId();
         AccountTransaction accountTransaction = accountTransactionDto.buildAccountTransaction(accountType);
 
         AccountTransaction createdAccountTransaction = accountTransactionTranslator.save(accountTransaction);
@@ -45,7 +52,9 @@ public class CreateAccountTransactionFlowImpl implements CreateAccountTransactio
             createdAccountTransaction.setDetails(accountTransactionDetails);
             accountTransactionDetailsTranslator.save(accountTransactionDetails);
         }
-        return new AccountTransactionDto(createdAccountTransaction);
+        AccountTransactionDto results = new AccountTransactionDto(createdAccountTransaction);
+        LOGGER.info("The return object is {}", results);
+        return results;
     }
 
 }
