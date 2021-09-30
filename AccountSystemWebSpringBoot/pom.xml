@@ -21,11 +21,13 @@
             <groupId>za.ac.nwu</groupId>
             <artifactId>AccountSystemDomain</artifactId>
             <version>${project.version}</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>za.ac.nwu</groupId>
             <artifactId>AccountSystemLogic</artifactId>
             <version>${project.version}</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -52,10 +54,7 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-        </dependency>
+
     </dependencies>
     <build>
         <plugins>

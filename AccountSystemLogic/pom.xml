@@ -25,14 +25,9 @@
             <groupId> za.ac.nwu</groupId>
             <artifactId>AccountSystemDomain</artifactId>
             <version>${project.version}</version>
-            <scope>provide</scope>
-        </dependency>
-        <dependency>
-            <groupId>za.ac.nwu</groupId>
-            <artifactId>AccountSystemTranslator</artifactId>
-            <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -56,12 +51,18 @@
             <groupId>io.swagger</groupId>
             <artifactId>swagger-annotations</artifactId>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-
 
     </dependencies>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                </plugin>
+            </plugins>
+
+
+        </pluginManagement>
+    </build>
 </project>

@@ -13,6 +13,9 @@
     <artifactId>AccountSystem</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+
+<!--    <haltOnFailure>true</haltOnFailure>-->
+
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
@@ -20,6 +23,8 @@
         <swagger.version>1.5.20</swagger.version>
 
     </properties>
+
+
     <modules>
         <module>AccountSystemDomain</module>
         <module>AccountSystemRepository</module>
@@ -104,15 +109,7 @@
             <groupId>io.swagger</groupId>
             <artifactId>swagger-annotations</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
+
 
         <dependency>
             <groupId>org.mockito</groupId>
@@ -145,7 +142,72 @@
                 <artifactId>maven-war-plugin</artifactId>
 
             </plugin>
+
+        <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.3</version>
+            <configuration>
+
+                <!--suppress UnresolvedMavenProperty -->
+                <haltOnFailure>${haltOnFailure}</haltOnFailure>
+                <rules>
+                    <rule>
+                        <element>
+                            <excludes>
+                                <exclude>za.ac.nwu.domain.dto.*</exclude>
+                                <exclude>za.ac.nwu.logic.LogicConfig</exclude>
+                                <exclude>za.ac.nwu.repo.config.RepositoryConfig</exclude>
+                            </excludes>
+                            <limits>
+                                <limit>
+                                    <counter>INSTRUCTION</counter>
+                                    <value>COVEREDRATIO</value>
+                                    <minimum>0.8</minimum>
+                                </limit>
+                                <limit>
+                                    <counter>LINE</counter>
+                                    <value>COVEREDRATIO</value>
+                                    <minimum>0.8</minimum>
+                                </limit>
+                                <limit>
+                                    <counter>BRANCH</counter>
+                                    <value>COVEREDRATIO</value>
+                                    <minimum>0.8</minimum>
+                                </limit>
+                            </limits>
+                        </element>
+
+                    </rule>
+
+
+                </rules>
+            </configuration>
+                    <executions>
+            <execution>
+                        <id>jacoco-check</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+            </execution>
+                        <execution>
+                            <id>default-prepare-agent</id>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                            </execution>
+                    <execution>
+                                <id>default-report</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                            </execution>
+                    </executions>
+        </plugin>
     </plugins>
+
 
     </pluginManagement>
     </build>
