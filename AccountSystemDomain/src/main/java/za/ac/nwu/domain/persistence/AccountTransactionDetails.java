@@ -51,4 +51,12 @@ public  AccountTransactionDetails(AccountTransaction accountTransaction, String 
 public void setAccountTransaction(AccountTransaction accountTransaction){
 
 }
+
+    public void setAccountTransactionDetailsId(Long accountTransactionDetailsId) {
+        this.accountTransactionDetailsId = accountTransactionDetailsId;
+    }
+
+    public void setNumberOfItems(Long numberOfItems) {
+        this.numberOfItems = numberOfItems;
+    }
 }

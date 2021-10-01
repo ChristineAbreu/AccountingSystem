@@ -32,7 +32,8 @@ public class AccountType implements Serializable{
    @JsonDeserialize(using = LocalDateDeserializer.class)
 
     private LocalDate creationDate;
-    private Set<AccountTransaction> AccountTransactions;
+    //private Set<AccountTransaction> AccountTransactions;
+
 
     public AccountType(String mnemonic, String accountTypeName, LocalDate creationDate) {
 
@@ -89,15 +90,15 @@ public class AccountType implements Serializable{
         this.creationDate = creationDate;
     }
 
-@OneToMany(targetEntity = AccountTransaction.class, fetch = FetchType.LAZY, mappedBy = "accountType", orphanRemoval = true, cascade = CascadeType.PERSIST)
-public Set<AccountTransaction> getAccountTransactions(){
-        return AccountTransactions;
-}
-
-
- public void setAccountTransactions(Set<AccountTransaction> accountTransactions){
-        this.AccountTransactions = accountTransactions;
- }
+//@OneToMany(targetEntity = AccountTransaction.class, fetch = FetchType.LAZY, mappedBy = "accountType", orphanRemoval = true, cascade = CascadeType.PERSIST)
+//public Set<AccountTransaction> getAccountTransactions(){
+//        return AccountTransactions;
+//}
+//
+//
+// public void setAccountTransactions(Set<AccountTransaction> accountTransactions){
+//        this.AccountTransactions = accountTransactions;
+// }
 
     @Override
     public boolean equals(Object o) {

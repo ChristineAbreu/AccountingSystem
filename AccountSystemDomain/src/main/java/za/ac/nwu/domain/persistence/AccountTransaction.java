@@ -118,11 +118,9 @@ public AccountTransaction(){
                 ", transactionDate=" + transactionDate +
                 '}';
     }
-
-    public AccountTypeDto getMnemonic() {
-        return null;
-    }
 }
+
+
 
 
 

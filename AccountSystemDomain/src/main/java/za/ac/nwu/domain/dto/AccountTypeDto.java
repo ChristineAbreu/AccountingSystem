@@ -29,11 +29,11 @@ private LocalDate creationDate;
         this.setCreationDate(accountType.getCreationDate());
     }
 
-    public AccountTypeDto() {
-
+    public AccountTypeDto(AccountTypeDto accountType) {
     }
 
-    public AccountTypeDto(AccountTypeDto accountType) {
+    public AccountTypeDto() {
+
     }
 
 

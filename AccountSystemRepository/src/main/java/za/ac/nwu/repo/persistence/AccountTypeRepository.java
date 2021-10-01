@@ -38,7 +38,7 @@ public interface AccountTypeRepository extends JpaRepository<AccountType, Long> 
     AccountTypeDto getAccountTypeDtoByMnemonic(String mnemonic);
 
     AccountType findByCreationDate(LocalDate creationDate);
-    AccountType findByAccountTypeName(Long accountTypeName);
+    AccountType findByAccountTypeName(String accountTypeName);
     AccountType findByMnemonic(String mnemonic);
     AccountType findByAccountTypeId(Long accountTypeId);
     @Override
