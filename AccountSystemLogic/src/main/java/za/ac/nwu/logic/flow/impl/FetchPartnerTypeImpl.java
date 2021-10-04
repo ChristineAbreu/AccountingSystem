@@ -2,20 +2,20 @@ package za.ac.nwu.logic.flow.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import za.ac.nwu.domain.dto.PartnerDto;
-import za.ac.nwu.logic.flow.FetchPartnerFlow;
+import za.ac.nwu.logic.flow.FetchPartnerTypeFlow;
 import za.ac.nwu.translator.PartnerTranslator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FetchPartnerImpl implements FetchPartnerFlow {
+public class FetchPartnerTypeImpl implements FetchPartnerTypeFlow {
 
     private final PartnerTranslator partnerTranslator;
 
     @Autowired
 
 
-    public FetchPartnerImpl(PartnerTranslator partnerTranslator) {
+    public FetchPartnerTypeImpl(PartnerTranslator partnerTranslator) {
         this.partnerTranslator = partnerTranslator;
     }
 

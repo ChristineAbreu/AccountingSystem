@@ -4,7 +4,7 @@ import za.ac.nwu.domain.dto.PartnerDto;
 
 import java.util.List;
 
-public interface FetchPartnerFlow {
+public interface FetchPartnerTypeFlow {
     PartnerDto getPartnerTypeByMnemonic(String mnemonic);
 
     PartnerDto getPartnerTypeDbEntityByMnemonic(Object currencyTypeMnemonic);

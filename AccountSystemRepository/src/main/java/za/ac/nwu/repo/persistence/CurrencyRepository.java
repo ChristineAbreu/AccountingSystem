@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import za.ac.nwu.domain.dto.CurrencyDto;
-import za.ac.nwu.domain.persistence.MemberAccountType;
 import za.ac.nwu.domain.persistence.CurrencyType;
 
 
@@ -41,7 +40,7 @@ import java.util.Optional;
                 "FROM"+
                 "CurrencyType at"+
                 "WHERE at. mnemonic =: mnemonic")
-
+        CurrencyDto getCurrencyDtoByMnemonic(String mnemonic);
 
         @Override
         Optional<CurrencyType> findById(Long aLong);
@@ -49,10 +48,6 @@ import java.util.Optional;
 
         List<CurrencyType> findAll();
 
-
-    CurrencyDto getCurrencyDtoByMnemonic(String mnemonic);
-        static void getCurrencyTypeDtoByMnemonic(String miles) {
-        }
 
 }
 

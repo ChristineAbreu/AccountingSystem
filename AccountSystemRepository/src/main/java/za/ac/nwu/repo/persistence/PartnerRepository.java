@@ -14,15 +14,6 @@ import java.util.Optional;
 @Repository
 public interface PartnerRepository extends JpaRepository<PartnerType, Long> {
 
-
-
-    @Query(value = "SELECT"+
-            "PARTNER_TYPE_ID,"+
-            "PARTNER_TYPE_NAME,"+
-            "MNEMONIC"+
-            "FROM"+ "VITRSA_SANDBOX_PARTNER_TYPE"+
-            "WHERE MNEMONIC = :mnemonic", nativeQuery = true)
-    static PartnerType getPartnerTypeByMnemonicNativeQuery(String mnemonic);
     //native queries is not recommended
     @Query(value = "SELECT"+
             "at"+
@@ -30,7 +21,7 @@ public interface PartnerRepository extends JpaRepository<PartnerType, Long> {
             "PartnerType at"+
             "MNEMONIC"+
             "WHERE MNEMONIC = :mnemonic")
-    PartnerType getPartnerTypeByMnemonic(String mnemonic);
+    PartnerType getPartnerTypeByMnemonicNativeQuery(String mnemonic);
 
     @Query(value = "SELECT new za.ac.nwu.domain.dto.PartnerDto("+
             "at.mnemonic,"+
@@ -38,7 +29,15 @@ public interface PartnerRepository extends JpaRepository<PartnerType, Long> {
             "FROM"+
             "PartnerType at"+
             "WHERE at. mnemonic =: mnemonic")
+    PartnerType getPartnerTypeByMnemonic(String mnemonic);
 
+    @Query(value = "SELECT new za.ac.nwu.domain.dto.PartnerDto(" +
+            "at.mnemonic," +
+            "at.partnerTypeName," +
+            "FROM" +
+            "PartnerType at" +
+            "WHERE at. mnemonic =: mnemonic")
+    PartnerDto getPartnerDtoByMnemonic(String mnemonic);
 
     @Override
     Optional<PartnerType> findById(Long aLong);
@@ -46,10 +45,5 @@ public interface PartnerRepository extends JpaRepository<PartnerType, Long> {
 
     List<PartnerType> findAll();
 
-
-
-    PartnerDto getPartnerDtoByMnemonic(String mnemonic);
-    static void getPartnerTypeDtoByMnemonic(String miles) {
-    }
 
 }

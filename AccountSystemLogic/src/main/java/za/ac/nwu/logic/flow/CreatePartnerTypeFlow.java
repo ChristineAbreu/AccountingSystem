@@ -2,7 +2,7 @@ package za.ac.nwu.logic.flow;
 
 import za.ac.nwu.domain.dto.PartnerDto;
 
-public interface CreatePartnerFlow {
+public interface CreatePartnerTypeFlow {
     default PartnerDto create() {
         return null;
     }

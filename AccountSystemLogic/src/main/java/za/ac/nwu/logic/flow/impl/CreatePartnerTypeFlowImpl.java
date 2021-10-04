@@ -2,15 +2,15 @@ package za.ac.nwu.logic.flow.impl;
 
 import za.ac.nwu.domain.dto.MemberAccountTypeDto;
 import za.ac.nwu.domain.dto.PartnerDto;
-import za.ac.nwu.logic.flow.CreatePartnerFlow;
+import za.ac.nwu.logic.flow.CreatePartnerTypeFlow;
 import za.ac.nwu.translator.PartnerTranslator;
 
 
-public class CreatePartnerFlowImpl implements CreatePartnerFlow {
+public class CreatePartnerTypeFlowImpl implements CreatePartnerTypeFlow {
 
     private PartnerTranslator partnerTranslator;
 
-    public CreatePartnerFlowImpl(PartnerTranslator partnerTranslator) {
+    public CreatePartnerTypeFlowImpl(PartnerTranslator partnerTranslator) {
         this.partnerTranslator = partnerTranslator;
 
     }
@@ -23,7 +23,7 @@ public class CreatePartnerFlowImpl implements CreatePartnerFlow {
 
     @Override
     public PartnerDto create() {
-        return CreatePartnerFlow.super.create();
+        return CreatePartnerTypeFlow.super.create();
     }
 
     @Override
