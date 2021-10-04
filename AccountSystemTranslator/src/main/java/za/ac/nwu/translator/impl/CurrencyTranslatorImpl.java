@@ -59,7 +59,7 @@ public class CurrencyTranslatorImpl implements CurrencyTypeTranslator {
     @Override
     public CurrencyDto getCurrencyTypeByMnemonicNativeQuery(String mnemonic) {
         try {
-            CurrencyType currencyType = currencyRepository.getCurrencyTypeByMnemonicNativeQuery(mnemonic);
+            CurrencyType currencyType = CurrencyRepository.getCurrencyTypeByMnemonicNativeQuery(mnemonic);
             return new CurrencyDto(currencyType);
         } catch (Exception e) {
             throw new RuntimeException("Unable to read from the DB", e);

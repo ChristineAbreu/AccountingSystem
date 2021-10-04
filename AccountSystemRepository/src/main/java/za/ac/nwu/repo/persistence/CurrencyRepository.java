@@ -14,6 +14,9 @@ import java.util.Optional;
 
     @Repository
     public interface CurrencyRepository extends JpaRepository<CurrencyType, Long> {
+
+
+
         @Query(value = "SELECT"+
                 "CURRENCY_TYPE_ID,"+
                 "CURRENCY_TYPE_NAME,"+
@@ -44,11 +47,15 @@ import java.util.Optional;
 
         List<CurrencyType> findAll();
 
-    CurrencyType getCurrencyTypeByMnemonicNativeQuery(String mnemonic);
+        static CurrencyType getCurrencyTypeByMnemonicNativeQuery(String mnemonic) {
+            return null;
+        }
 
-    CurrencyType getCurrencyTypeByMnemonic(String mnemonic);
+        CurrencyType getCurrencyTypeByMnemonic(String mnemonic);
 
     CurrencyDto getCurrencyDtoByMnemonic(String mnemonic);
+        static void getCurrencyTypeDtoByMnemonic(String miles) {
+        }
 
 }
 

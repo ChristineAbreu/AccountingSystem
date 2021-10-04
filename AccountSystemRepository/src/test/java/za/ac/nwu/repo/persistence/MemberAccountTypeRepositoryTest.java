@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @ContextConfiguration(classes = {RepositoryTestConfig.class})
-public class MemberMemberAccountTypeRepositoryTest {
+public class MemberAccountTypeRepositoryTest {
     @Autowired
     MemberAccountTypeRepository memberAccountTypeRepository;
     @Before
