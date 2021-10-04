@@ -2,7 +2,6 @@ package za.ac.nwu.domain.persistence;
 
 
 import lombok.*;
-import za.ac.nwu.domain.dto.AccountTypeDto;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,7 +14,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "ACCOUNT_TYPE", schema = "VITRSA_SANDBOX")
-public class AccountTransaction implements Serializable{
+public class MemberAccountTransaction implements Serializable{
 
 
     private static final long serialVersionUID = -1420294317019175740L;
@@ -29,17 +28,17 @@ public class AccountTransaction implements Serializable{
 
     //@ManyToOne
     @JoinColumn(name = "details_account_tx_details_id")
-    private AccountTransactionDetails details;
+    private MemberAccountTransactionDetails details;
 
     @ManyToOne
     @JoinColumn(name = "account_type_id")
-    private AccountType accountType;
+    private MemberAccountType memberAccountType;
 
 
-    public AccountTransaction(){
+    public MemberAccountTransaction(){
 
 }
-    public AccountTransaction(Long transactionId, Long currencyType, Long memberId, Long amount, LocalDate transactionDate) {
+    public MemberAccountTransaction(Long transactionId, Long currencyType, Long memberId, Long amount, LocalDate transactionDate) {
         this.transactionId = transactionId;
         this.currencyType = currencyType;
         this.memberId = memberId;
@@ -47,11 +46,11 @@ public class AccountTransaction implements Serializable{
         this.transactionDate = transactionDate;
     }
 
-    public AccountTransaction(Long transactionId, CurrencyType currencyType, Long memberId, Long amount, LocalDate transactionDate) {
+    public MemberAccountTransaction(Long transactionId, CurrencyType currencyType, Long memberId, Long amount, LocalDate transactionDate) {
 
     }
 
-    public AccountTransaction(Long transactionId, AccountType accountType, Long memberId, Long amount, LocalDate transactionDate) {
+    public MemberAccountTransaction(Long transactionId, MemberAccountType memberAccountType, Long memberId, Long amount, LocalDate transactionDate) {
     }
 
 
@@ -107,7 +106,7 @@ public class AccountTransaction implements Serializable{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AccountTransaction that = (AccountTransaction) o;
+        MemberAccountTransaction that = (MemberAccountTransaction) o;
         return Objects.equals(transactionId, that.transactionId) && Objects.equals(currencyType, that.currencyType) && Objects.equals(memberId, that.memberId) && Objects.equals(amount, that.amount) && Objects.equals(transactionDate, that.transactionDate);
     }
 
@@ -118,9 +117,9 @@ public class AccountTransaction implements Serializable{
 
     @Override
     public String toString() {
-        return "AccountTransaction{" +
+        return "MemberAccountTransaction{" +
                 "transactionId=" + transactionId +
-                ", accountType=" + currencyType +
+                ", memberAccountType=" + currencyType +
                 ", memberId=" + memberId +
                 ", amount=" + amount +
                 ", transactionDate=" + transactionDate +

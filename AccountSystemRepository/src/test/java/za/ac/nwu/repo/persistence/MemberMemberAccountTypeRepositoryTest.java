@@ -7,19 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import za.ac.nwu.domain.dto.AccountTypeDto;
-import za.ac.nwu.domain.persistence.AccountType;
-import za.ac.nwu.repo.config.RepositoryTestConfig;
-import za.ac.nwu.domain.persistence.AccountType;
+import za.ac.nwu.domain.dto.MemberAccountTypeDto;
+import za.ac.nwu.domain.persistence.MemberAccountType;
 import za.ac.nwu.repo.config.RepositoryTestConfig;
 
 import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @ContextConfiguration(classes = {RepositoryTestConfig.class})
-public class AccountTypeRepositoryTest {
+public class MemberMemberAccountTypeRepositoryTest {
     @Autowired
-    AccountTypeRepository accountTypeRepository;
+    MemberAccountTypeRepository memberAccountTypeRepository;
     @Before
     public void setUp() throws Exception {
         // What happens before each test
@@ -30,54 +28,54 @@ public class AccountTypeRepositoryTest {
     }
     @Test
     public void getAccountTypeByMnemonicNativeQueryMiles() {
-        AccountType miles = accountTypeRepository.getAccountTypeByMnemonicNativeQuery("MILES");
+        MemberAccountType miles = memberAccountTypeRepository.getAccountTypeByMnemonicNativeQuery("MILES");
         assertNotNull(miles);
         assertEquals("MILES", miles.getMnemonic());
     }
 
     @Test
     public void getAccountTypeByMnemonicNativeQuery() {
-        AccountType miles = accountTypeRepository.getAccountTypeByMnemonicNativeQuery("MILESSSSS");
+        MemberAccountType miles = memberAccountTypeRepository.getAccountTypeByMnemonicNativeQuery("MILESSSSS");
         assertNull(miles);
     }
 
     @Test
     public void getAccountTypeByMnemonicMiles() {
-        AccountType miles = accountTypeRepository.getAccountTypeByMnemonic("MILES");
+        MemberAccountType miles = memberAccountTypeRepository.getAccountTypeByMnemonic("MILES");
         assertNotNull(miles);
         assertEquals("MILES", miles.getMnemonic());
     }
 
     @Test
     public void getAccountTypeByMnemonicPlay() {
-        AccountType miles = accountTypeRepository.getAccountTypeByMnemonic("PLAY");
+        MemberAccountType miles = memberAccountTypeRepository.getAccountTypeByMnemonic("PLAY");
         assertNotNull(miles);
         assertEquals("PLAY", miles.getMnemonic());
     }
 
     @Test
     public void getAccountTypeByMnemonic() {
-        AccountType miles = accountTypeRepository.getAccountTypeByMnemonicNativeQuery("R");
+        MemberAccountType miles = memberAccountTypeRepository.getAccountTypeByMnemonicNativeQuery("R");
         assertNull(miles);
     }
 
     @Test
     public void getAccountTypeDtoByMnemonicMiles() {
-        AccountTypeDto miles = accountTypeRepository.getAccountTypeDtoByMnemonic("MILES");
+        MemberAccountTypeDto miles = memberAccountTypeRepository.getAccountTypeDtoByMnemonic("MILES");
         assertNotNull(miles);
         assertEquals("MILES", miles.getMnemonic());
     }
 
     @Test
     public void getAccountTypeDtoByMnemonicPlay() {
-        AccountTypeDto miles = accountTypeRepository.getAccountTypeDtoByMnemonic("PLAY");
+        MemberAccountTypeDto miles = memberAccountTypeRepository.getAccountTypeDtoByMnemonic("PLAY");
         assertNotNull(miles);
         assertEquals("PLAY", miles.getMnemonic());
     }
 
     @Test
     public void getAccountTypeDtoByMnemonics() {
-        AccountTypeDto miles = accountTypeRepository.getAccountTypeDtoByMnemonic("R");
+        MemberAccountTypeDto miles = memberAccountTypeRepository.getAccountTypeDtoByMnemonic("R");
         assertNull(miles);
     }
 

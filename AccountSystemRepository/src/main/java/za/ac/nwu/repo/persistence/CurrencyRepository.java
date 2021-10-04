@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import za.ac.nwu.domain.dto.CurrencyDto;
-import za.ac.nwu.domain.persistence.AccountType;
+import za.ac.nwu.domain.persistence.MemberAccountType;
 import za.ac.nwu.domain.persistence.CurrencyType;
 
 
@@ -20,7 +20,7 @@ import java.util.Optional;
                 "MNEMONIC"+
                 "FROM"+ "VITRSA_SANDBOX_CURRENCY_TYPE"+
                 "WHERE MNEMONIC = :mnemonic", nativeQuery = true)
-        AccountType getCURRENCYTypeByMnemonicNativeQuery(String mnemonic);
+        MemberAccountType getCURRENCYTypeByMnemonicNativeQuery(String mnemonic);
         //native queries is not recommended
         @Query(value = "SELECT"+
                 "at"+
@@ -28,7 +28,7 @@ import java.util.Optional;
                 "CurrencyType at"+
                 "MNEMONIC"+
                 "WHERE MNEMONIC = :mnemonic")
-        AccountType getCURRENCYTypeByMnemonic(String mnemonic);
+        MemberAccountType getCURRENCYTypeByMnemonic(String mnemonic);
 
         @Query(value = "SELECT new za.ac.nwu.domain.dto.CurrencyDto("+
                 "at.mnemonic,"+

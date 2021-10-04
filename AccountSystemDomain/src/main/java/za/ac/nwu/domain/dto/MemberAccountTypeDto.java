@@ -3,15 +3,14 @@ package za.ac.nwu.domain.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import za.ac.nwu.domain.persistence.AccountType;
-import za.ac.nwu.domain.persistence.CurrencyType;
+import za.ac.nwu.domain.persistence.MemberAccountType;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-@ApiModel(value = "AccountType", description = "A DTO that represents the AccountType")
-public class AccountTypeDto implements Serializable {
+@ApiModel(value = "MemberAccountType", description = "A DTO that represents the MemberAccountType")
+public class MemberAccountTypeDto implements Serializable {
     private static final long serialVersionUID = -534653206480289868L;
 
     public String mnemonic;
@@ -19,28 +18,28 @@ public class AccountTypeDto implements Serializable {
     private String accountTypeName;
 private LocalDate creationDate;
 
-    public AccountTypeDto(String mnemonic, String accountTypeName, LocalDate creationDate) {
+    public MemberAccountTypeDto(String mnemonic, String accountTypeName, LocalDate creationDate) {
         this.mnemonic = mnemonic;
         this.accountTypeName = accountTypeName;
         this.creationDate = creationDate;
     }
 
-    public AccountTypeDto(AccountType accountType) {
-        this.setMnemonic(accountType.getMnemonic());
-        this.setAccountTypeName(accountType.getAccountTypeName());
-        this.setCreationDate(accountType.getCreationDate());
+    public MemberAccountTypeDto(MemberAccountType memberAccountType) {
+        this.setMnemonic(memberAccountType.getMnemonic());
+        this.setAccountTypeName(memberAccountType.getAccountTypeName());
+        this.setCreationDate(memberAccountType.getCreationDate());
     }
 
-    public AccountTypeDto(AccountTypeDto accountType) {
+    public MemberAccountTypeDto(MemberAccountTypeDto accountType) {
     }
 
-    public AccountTypeDto() {
+    public MemberAccountTypeDto() {
 
     }
 
 
     @ApiModelProperty(position = 1,
-            value = "AccountType Mnemonic",
+            value = "MemberAccountType Mnemonic",
             name = "Mnemonic",
             notes = "Uniquely identifies the account type",
             dataType = "java.lang.String",
@@ -55,9 +54,9 @@ private LocalDate creationDate;
         this.mnemonic = mnemonic;
     }
     @ApiModelProperty(position = 2,
-            value = "AccountType Name",
+            value = "MemberAccountType Name",
             name = "Name",
-            notes = "The name of the AccountType",
+            notes = "The name of the MemberAccountType",
             dataType = "java.lang.String",
             example = "MILES",
             required = true)
@@ -69,9 +68,9 @@ private LocalDate creationDate;
         this.accountTypeName = accountTypeName;
     }
     @ApiModelProperty(position = 3,
-            value = "AccountType Creation Date",
+            value = "MemberAccountType Creation Date",
             name = "CreationDate",
-            notes = "This is the date on which the AccountType was created",
+            notes = "This is the date on which the MemberAccountType was created",
             dataType = "java.lang.String",
             example = "2020-01-01",
             allowEmptyValue = true,
@@ -88,13 +87,13 @@ private LocalDate creationDate;
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AccountTypeDto that = (AccountTypeDto) o;
+        MemberAccountTypeDto that = (MemberAccountTypeDto) o;
         return Objects.equals(mnemonic, that.mnemonic) && Objects.equals(accountTypeName, that.accountTypeName) && Objects.equals(creationDate, that.creationDate);
     }
 
 @JsonIgnore
-public AccountType getAccountType() {
-return  new AccountType(getMnemonic(),getAccountTypeName(),getCreationDate());
+public MemberAccountType getAccountType() {
+return  new MemberAccountType(getMnemonic(),getAccountTypeName(),getCreationDate());
 }
 
     @Override
@@ -104,7 +103,7 @@ return  new AccountType(getMnemonic(),getAccountTypeName(),getCreationDate());
 
     @Override
     public String toString() {
-        return "AccountTypeDto{" +
+        return "MemberAccountTypeDto{" +
                 "mnemonic='" + mnemonic + '\'' +
                 ", accountTypeName='" + accountTypeName + '\'' +
                 ", creationDate=" + creationDate +

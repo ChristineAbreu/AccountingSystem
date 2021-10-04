@@ -1,23 +1,14 @@
 package za.ac.nwu.domain.persistence;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import za.ac.nwu.domain.dto.CurrencyDto;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
-
-
-import lombok.*;
 
 @Getter
 @Setter
@@ -38,7 +29,7 @@ public class CurrencyType implements Serializable{
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
-    private Set<AccountTransaction> AccountTransactions;
+    private Set<MemberAccountTransaction> memberAccountTransactions;
 
 
     public CurrencyType(String mnemonic, String currencyTypeName, Long currencyTypeId) {
@@ -91,14 +82,14 @@ public class CurrencyType implements Serializable{
 
 
 
-@OneToMany(targetEntity = AccountTransaction.class, fetch = FetchType.LAZY, mappedBy = "currencyType", orphanRemoval = true, cascade = CascadeType.PERSIST)
-public Set<AccountTransaction> getAccountTransactions(){
-       return AccountTransactions;
+@OneToMany(targetEntity = MemberAccountTransaction.class, fetch = FetchType.LAZY, mappedBy = "currencyType", orphanRemoval = true, cascade = CascadeType.PERSIST)
+public Set<MemberAccountTransaction> getAccountTransactions(){
+       return memberAccountTransactions;
 }
 
 
- public void setAccountTransactions(Set<AccountTransaction> accountTransactions){
-       this.AccountTransactions = accountTransactions;
+ public void setAccountTransactions(Set<MemberAccountTransaction> memberAccountTransactions){
+       this.memberAccountTransactions = memberAccountTransactions;
  }
 
     @Override

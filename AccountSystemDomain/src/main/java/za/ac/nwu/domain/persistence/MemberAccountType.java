@@ -14,7 +14,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "ACCOUNT_TYPE", schema = "VITRSA_SANDBOX")
-public class AccountType implements Serializable{
+public class MemberAccountType implements Serializable{
 
 
     @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "VITRSA_SANDBOX.VIT_RSA_GENERIC_SEQ", allocationSize = 1 )
@@ -32,11 +32,11 @@ public class AccountType implements Serializable{
    @JsonDeserialize(using = LocalDateDeserializer.class)
 
     private LocalDate creationDate;
-    private Set<AccountTransaction> AccountTransactions;
-    //private Set<AccountTransaction> AccountTransactions;
+    private Set<MemberAccountTransaction> memberAccountTransactions;
+    //private Set<MemberAccountTransaction> memberAccountTransactions;
 
 
-    public AccountType(String mnemonic, String accountTypeName, LocalDate creationDate) {
+    public MemberAccountType(String mnemonic, String accountTypeName, LocalDate creationDate) {
 
     }
 
@@ -49,14 +49,14 @@ public class AccountType implements Serializable{
     }
 
 
-    public AccountType(Long accountTypeId, String mnemonic, String accountTypeName, LocalDate creationDate) {
+    public MemberAccountType(Long accountTypeId, String mnemonic, String accountTypeName, LocalDate creationDate) {
         this.accountTypeId = accountTypeId;
         this.mnemonic = mnemonic;
         this.accountTypeName = accountTypeName;
         this.creationDate = creationDate;
     }
 
-    public AccountType() {
+    public MemberAccountType() {
     }
     @Column(name = "ACCOUNT_TYPE_ID")
     public Long getAccountTypeId() {
@@ -91,21 +91,21 @@ public class AccountType implements Serializable{
         this.creationDate = creationDate;
     }
 
-@OneToMany(targetEntity = AccountTransaction.class, fetch = FetchType.LAZY, mappedBy = "accountType", orphanRemoval = true, cascade = CascadeType.PERSIST)
-public Set<AccountTransaction> getAccountTransactions(){
-       return AccountTransactions;
+@OneToMany(targetEntity = MemberAccountTransaction.class, fetch = FetchType.LAZY, mappedBy = "memberAccountType", orphanRemoval = true, cascade = CascadeType.PERSIST)
+public Set<MemberAccountTransaction> getAccountTransactions(){
+       return memberAccountTransactions;
 }
 
 
- public void setAccountTransactions(Set<AccountTransaction> accountTransactions){
-        this.AccountTransactions = accountTransactions;
+ public void setAccountTransactions(Set<MemberAccountTransaction> memberAccountTransactions){
+        this.memberAccountTransactions = memberAccountTransactions;
  }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AccountType that = (AccountType) o;
+        MemberAccountType that = (MemberAccountType) o;
         return Objects.equals(accountTypeId, that.accountTypeId) && Objects.equals(mnemonic, that.mnemonic) && Objects.equals(accountTypeName, that.accountTypeName) && Objects.equals(creationDate, that.creationDate);
     }
 
@@ -116,7 +116,7 @@ public Set<AccountTransaction> getAccountTransactions(){
 
     @Override
     public String toString() {
-        return "AccountType{" +
+        return "MemberAccountType{" +
                 "accountTypeId=" + accountTypeId +
                 ", mnemonic=" + mnemonic +
                 ", accountTypeName=" + accountTypeName +

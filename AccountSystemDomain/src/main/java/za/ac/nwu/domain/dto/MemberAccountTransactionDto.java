@@ -1,12 +1,12 @@
 package za.ac.nwu.domain.dto;
 
-import za.ac.nwu.domain.persistence.AccountTransaction;
-import za.ac.nwu.domain.persistence.AccountType;
+import za.ac.nwu.domain.persistence.MemberAccountTransaction;
+import za.ac.nwu.domain.persistence.MemberAccountType;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class AccountTransactionDto implements Serializable {
+public class MemberAccountTransactionDto implements Serializable {
 
 
 
@@ -15,17 +15,17 @@ public class AccountTransactionDto implements Serializable {
     private Long memberId;
     private Long amount;
     private LocalDate transactionDate;
-    private AccountTransactionDetailsDto details;
+    private MemberAccountTransactionDetailsDto details;
     public Throwable outputForLogging;
 
 
 
 
-    public AccountTransactionDto() {
+    public MemberAccountTransactionDto() {
 
     }
 
-    public AccountTransactionDto(Long transactionId, String accountTypeMnemonic, Long memberId, Long amount, LocalDate transactionDate) {
+    public MemberAccountTransactionDto(Long transactionId, String accountTypeMnemonic, Long memberId, Long amount, LocalDate transactionDate) {
         this.transactionId = transactionId;
         this.accountTypeMnemonic = accountTypeMnemonic;
         this.memberId = memberId;
@@ -33,7 +33,7 @@ public class AccountTransactionDto implements Serializable {
         this.transactionDate = transactionDate;
     }
 
-    public AccountTransactionDto(Long transactionId, String accountTypeMnemonic, Long memberId, Long amount, LocalDate transactionDate, AccountTransactionDetailsDto details) {
+    public MemberAccountTransactionDto(Long transactionId, String accountTypeMnemonic, Long memberId, Long amount, LocalDate transactionDate, MemberAccountTransactionDetailsDto details) {
         this.transactionId = transactionId;
         this.accountTypeMnemonic = accountTypeMnemonic;
         this.memberId = memberId;
@@ -42,20 +42,20 @@ public class AccountTransactionDto implements Serializable {
         this.details = details;
     }
 
-    public AccountTransactionDto(AccountTransaction createdAccountTransaction) {
+    public MemberAccountTransactionDto(MemberAccountTransaction createdMemberAccountTransaction) {
     }
 
-    public AccountTransaction AccountTransactionDto(AccountTransaction accountTransaction, AccountType accountType) {
-        this.transactionId = accountTransaction.getTransactionId();
-       // this.accountTypeMnemonic = accountTransaction.getAccountType().getMnemonic();
-        this.memberId = accountTransaction.getMemberId();
-        this.amount = accountTransaction.getAmount();
-        this.transactionDate = accountTransaction.getTransactionDate();
-        if(null != accountTransaction.getDetails()){
-            return new AccountTransaction(this.getTransactionId(), accountType, this.getMemberId(),
+    public MemberAccountTransaction AccountTransactionDto(MemberAccountTransaction memberAccountTransaction, MemberAccountType memberAccountType) {
+        this.transactionId = memberAccountTransaction.getTransactionId();
+       // this.accountTypeMnemonic = memberAccountTransaction.getMemberAccountType().getMnemonic();
+        this.memberId = memberAccountTransaction.getMemberId();
+        this.amount = memberAccountTransaction.getAmount();
+        this.transactionDate = memberAccountTransaction.getTransactionDate();
+        if(null != memberAccountTransaction.getDetails()){
+            return new MemberAccountTransaction(this.getTransactionId(), memberAccountType, this.getMemberId(),
                     this.getAmount(), this.getTransactionDate());
         }
-        return accountTransaction;
+        return memberAccountTransaction;
     }
 
     private LocalDate getTransactionDate() {return transactionDate;
@@ -86,12 +86,12 @@ public class AccountTransactionDto implements Serializable {
     }
 
 
-    public AccountTransactionDetailsDto getDetails() {
+    public MemberAccountTransactionDetailsDto getDetails() {
         return details;
     }
 
-    public AccountTransaction buildAccountTransaction(AccountType accountType) {
-        return new AccountTransaction(this.getTransactionId(),accountType,this.getMemberId(),this.getAmount(),this.getTransactionDate());
+    public MemberAccountTransaction buildAccountTransaction(MemberAccountType memberAccountType) {
+        return new MemberAccountTransaction(this.getTransactionId(), memberAccountType,this.getMemberId(),this.getAmount(),this.getTransactionDate());
     }
 
 

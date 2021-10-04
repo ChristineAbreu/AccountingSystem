@@ -6,11 +6,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class FetchAccountTypeImplTest {
-    private FetchAccountTypeImpl testClass;
+public class FetchMemberAccountTypeImplTest {
+    private FetchMemberAccountTypeImpl testClass;
     @Before
     void setUp() {
-        testClass = new FetchAccountTypeImpl(null);
+        testClass = new FetchMemberAccountTypeImpl(null);
     }
 
     @After

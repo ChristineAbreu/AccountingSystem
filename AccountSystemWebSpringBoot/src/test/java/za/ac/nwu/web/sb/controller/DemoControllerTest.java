@@ -12,10 +12,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import za.ac.nwu.domain.dto.AccountTypeDto;
-import za.ac.nwu.logic.flow.CreateAccountTypeFlow;
-import za.ac.nwu.logic.flow.FetchAccountTypeFlow;
-import za.ac.nwu.logic.flow.ModifyAccountTypeFlow;
+import za.ac.nwu.domain.dto.MemberAccountTypeDto;
+import za.ac.nwu.logic.flow.CreateMemberAccountTypeFlow;
+import za.ac.nwu.logic.flow.FetchMemberAccountTypeFlow;
+import za.ac.nwu.logic.flow.ModifyMemberAccountTypeFlow;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,11 +47,11 @@ public class DemoControllerTest {
     private static final String ACCOUNT_TYPE_CONTROLLER_URL = APP_URL +
             "/account-type";
     @Mock
-    private FetchAccountTypeFlow fetchAccountTypeFlow;
+    private FetchMemberAccountTypeFlow fetchMemberAccountTypeFlow;
     @Mock
-    private CreateAccountTypeFlow createAccountTypeFlow;
+    private CreateMemberAccountTypeFlow createMemberAccountTypeFlow;
     @Mock
-    private ModifyAccountTypeFlow modifyAccountTypeFlow;
+    private ModifyMemberAccountTypeFlow modifyMemberAccountTypeFlow;
     @InjectMocks
     private DemoController controller;
     private MockMvc mockMvc;
@@ -64,13 +64,13 @@ public class DemoControllerTest {
         String expectedResponse = "{\"successful\":true,\"payload\":[" +
               "{\"mnemonic\":\"MILES\",\"accountTypeName\":\"Miles account type\",\"creationDate\":[2020,1,1]}," +
                "{\"mnemonic\":\"PLAY\",\"accountTypeName\":\"Play account type\",\"creationDate\":[2021,4,1]}]}";
-        List<AccountTypeDto> accountTypes = new ArrayList<>();
-       accountTypes.add(new AccountTypeDto("MILES", "Miles account type",
+        List<MemberAccountTypeDto> accountTypes = new ArrayList<>();
+       accountTypes.add(new MemberAccountTypeDto("MILES", "Miles account type",
                 LocalDate.parse("2020-01-01")));
-       accountTypes.add(new AccountTypeDto("PLAY", "Play account type",
+       accountTypes.add(new MemberAccountTypeDto("PLAY", "Play account type",
                 LocalDate.parse("2021-04-01")));
 
-        when(fetchAccountTypeFlow.getAllAccountTypes()).thenReturn(accountTypes);
+        when(fetchMemberAccountTypeFlow.getAllAccountTypes()).thenReturn(accountTypes);
         MvcResult mvcResult = mockMvc.perform(get((String.format("%s/%s",
                         ACCOUNT_TYPE_CONTROLLER_URL, "all")))
                         .servletPath(APP_URL)
@@ -78,7 +78,7 @@ public class DemoControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
-        verify(fetchAccountTypeFlow, times(1)).getAllAccountTypes();
+        verify(fetchMemberAccountTypeFlow, times(1)).getAllAccountTypes();
         assertEquals(expectedResponse,
                 mvcResult.getResponse().getContentAsString());
     }
@@ -89,9 +89,9 @@ public class DemoControllerTest {
         String expectedResponse = "{\"successful\":true,\"payload\":" +
                 "{\"mnemonic\":\"MILES\",\"accountTypeName\":\"Miles account type\",\"creationDate\":[2020,1,1]}}";
 
-        AccountTypeDto accountType = new AccountTypeDto("MILES", "Miles account type", LocalDate.parse("2020-01-01"));
+        MemberAccountTypeDto accountType = new MemberAccountTypeDto("MILES", "Miles account type", LocalDate.parse("2020-01-01"));
 
-                when(createAccountTypeFlow.create(eq(accountType))).then(returnsFirstArg());
+                when(createMemberAccountTypeFlow.create(eq(accountType))).then(returnsFirstArg());
         MvcResult mvcResult =
                 mockMvc.perform(post(ACCOUNT_TYPE_CONTROLLER_URL)
                                 .servletPath(APP_URL)
@@ -100,7 +100,7 @@ public class DemoControllerTest {
                                 .contentType(MediaType.APPLICATION_JSON))
                         .andExpect(status().isCreated())
                         .andReturn();
-        verify(createAccountTypeFlow, times(1)).create(eq(accountType));
+        verify(createMemberAccountTypeFlow, times(1)).create(eq(accountType));
         assertEquals(expectedResponse,
                 mvcResult.getResponse().getContentAsString());
     }
@@ -110,9 +110,9 @@ public class DemoControllerTest {
                 "{\"successful\":true,\"payload\":" +
                         "{\"mnemonic\":\"PLAY\",\"accountTypeName\":\"Play account type\",\"creationDate\":[2020,4,1]}}";
 
-        AccountTypeDto accountType = new AccountTypeDto("PLAY", "Play account type", LocalDate.parse("2021-04-01"));
+        MemberAccountTypeDto accountType = new MemberAccountTypeDto("PLAY", "Play account type", LocalDate.parse("2021-04-01"));
 
-                when(modifyAccountTypeFlow.deleteAccountType(anyString())).thenReturn(accountType);
+                when(modifyMemberAccountTypeFlow.deleteAccountType(anyString())).thenReturn(accountType);
         MvcResult mvcResult = mockMvc.perform(delete((String.format("%s/%s",
                         ACCOUNT_TYPE_CONTROLLER_URL, "PLAY")))
                         .servletPath(APP_URL)
@@ -120,7 +120,7 @@ public class DemoControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
-        verify(modifyAccountTypeFlow,
+        verify(modifyMemberAccountTypeFlow,
                 times(1)).deleteAccountType(eq("PLAY"));
         assertEquals(expectedResponse,
                 mvcResult.getResponse().getContentAsString());
@@ -129,9 +129,9 @@ public class DemoControllerTest {
     public void updateAccountType() throws Exception {
         String expectedResponse = "{\"successful\":true,\"payload\":" +
                 "{\"mnemonic\":\"PLAY\",\"accountTypeName\":\"The new Play account type name\",\"creationDate\":[2021,4,1]}}";
-        AccountTypeDto accountType = new AccountTypeDto("PLAY", "The new Play account type name",
+        MemberAccountTypeDto accountType = new MemberAccountTypeDto("PLAY", "The new Play account type name",
                 LocalDate.parse("2021-04-01"));
-        when(modifyAccountTypeFlow.updateAccountType(anyString(),
+        when(modifyMemberAccountTypeFlow.updateAccountType(anyString(),
                 anyString(), any(LocalDate.class))).thenReturn(accountType);
         MvcResult mvcResult = mockMvc.perform(put((String.format("%s/%s",
                 ACCOUNT_TYPE_CONTROLLER_URL, "PLAY")))
@@ -142,7 +142,7 @@ public class DemoControllerTest {
                                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
-        verify(modifyAccountTypeFlow,
+        verify(modifyMemberAccountTypeFlow,
                 times(1)).updateAccountType(eq("PLAY"),
                 eq("The new Play account type name"),
                 eq(LocalDate.parse("2021-04-01")));
@@ -153,9 +153,9 @@ public class DemoControllerTest {
     public void updateAccountTypeWithNoOptionalDate() throws Exception {
         String expectedResponse = "{\"successful\":true,\"payload\":" +
                 "{\"mnemonic\":\"PLAY\",\"accountTypeName\":\"The new Play account type name\",\"creationDate\":[2021,9,1]}}";
-        AccountTypeDto accountType = new AccountTypeDto("PLAY", "The new Play account type name",
+        MemberAccountTypeDto accountType = new MemberAccountTypeDto("PLAY", "The new Play account type name",
                 LocalDate.parse("2021-09-01"));
-        when(modifyAccountTypeFlow.updateAccountType(anyString(),
+        when(modifyMemberAccountTypeFlow.updateAccountType(anyString(),
                 anyString(), isNull())).thenReturn(accountType);
         MvcResult mvcResult = mockMvc.perform(put((String.format("%s/%s",
                 ACCOUNT_TYPE_CONTROLLER_URL, "PLAY")))
@@ -165,7 +165,7 @@ public class DemoControllerTest {
                                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
-        verify(modifyAccountTypeFlow,
+        verify(modifyMemberAccountTypeFlow,
                 times(1)).updateAccountType(eq("PLAY"),
                 eq("The new Play account type name"), eq(null));
         assertEquals(expectedResponse,
@@ -180,11 +180,11 @@ public class DemoControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
                 .andReturn();
-        verify(modifyAccountTypeFlow,
+        verify(modifyMemberAccountTypeFlow,
                 never()).updateAccountType(anyString(), anyString(), any(LocalDate.class));
-        verify(modifyAccountTypeFlow,
+        verify(modifyMemberAccountTypeFlow,
                 never()).updateAccountType(anyString(), anyString(), isNull());
-        verify(modifyAccountTypeFlow,
+        verify(modifyMemberAccountTypeFlow,
                 never()).updateAccountType(anyString(), isNull(), isNull());
     }
 }

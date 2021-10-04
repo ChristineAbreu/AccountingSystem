@@ -1,13 +1,9 @@
 package za.ac.nwu.logic.flow.impl;
 
-import za.ac.nwu.domain.dto.AccountTypeDto;
+import za.ac.nwu.domain.dto.MemberAccountTypeDto;
 import za.ac.nwu.domain.dto.CurrencyDto;
 import za.ac.nwu.logic.flow.CreateCurrencyTypeFlow;
 import za.ac.nwu.translator.impl.CurrencyTypeTranslator;
-
-
-import javax.persistence.Index;
-import javax.persistence.Table;
 
 public class CreateCurrencyTypeFlowImpl implements CreateCurrencyTypeFlow {
 
@@ -19,7 +15,7 @@ public class CreateCurrencyTypeFlowImpl implements CreateCurrencyTypeFlow {
     }
 
     private CurrencyDto currencyType;
-    public CurrencyDto create(AccountTypeDto accountType) {
+    public CurrencyDto create(MemberAccountTypeDto accountType) {
         CurrencyDto currencyDto = currencyTypeTranslator.create(currencyType);
         return currencyTypeTranslator.create(currencyDto);
     }

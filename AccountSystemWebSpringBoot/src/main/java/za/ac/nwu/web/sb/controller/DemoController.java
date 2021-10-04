@@ -10,11 +10,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import za.ac.nwu.domain.dto.AccountTypeDto;
+import za.ac.nwu.domain.dto.MemberAccountTypeDto;
 import za.ac.nwu.domain.service.GeneralResponse;
-import za.ac.nwu.logic.flow.CreateAccountTypeFlow;
-import za.ac.nwu.logic.flow.FetchAccountTypeFlow;
-import za.ac.nwu.logic.flow.ModifyAccountTypeFlow;
+import za.ac.nwu.logic.flow.CreateMemberAccountTypeFlow;
+import za.ac.nwu.logic.flow.FetchMemberAccountTypeFlow;
+import za.ac.nwu.logic.flow.ModifyMemberAccountTypeFlow;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -24,18 +24,18 @@ import java.util.List;
 public class DemoController {
 
 
-    private final FetchAccountTypeFlow fetchAccountTypeFlow;
-    private final CreateAccountTypeFlow createAccountTypeFlow;
-    private final ModifyAccountTypeFlow modifyAccountTypeFlow;
-    private AccountTypeDto accountType;
+    private final FetchMemberAccountTypeFlow fetchMemberAccountTypeFlow;
+    private final CreateMemberAccountTypeFlow createMemberAccountTypeFlow;
+    private final ModifyMemberAccountTypeFlow modifyMemberAccountTypeFlow;
+    private MemberAccountTypeDto accountType;
 
 
     @Autowired
-    public DemoController(FetchAccountTypeFlow fetchAccountTypeFlow,
-                          @Qualifier("createAccountTypeFlowName") CreateAccountTypeFlow createAccountTypeFlow, ModifyAccountTypeFlow modifyAccountTypeFlow ) {
-        this.fetchAccountTypeFlow = fetchAccountTypeFlow;
-        this.createAccountTypeFlow = createAccountTypeFlow;
-        this.modifyAccountTypeFlow = modifyAccountTypeFlow;
+    public DemoController(FetchMemberAccountTypeFlow fetchMemberAccountTypeFlow,
+                          @Qualifier("createAccountTypeFlowName") CreateMemberAccountTypeFlow createMemberAccountTypeFlow, ModifyMemberAccountTypeFlow modifyMemberAccountTypeFlow) {
+        this.fetchMemberAccountTypeFlow = fetchMemberAccountTypeFlow;
+        this.createMemberAccountTypeFlow = createMemberAccountTypeFlow;
+        this.modifyMemberAccountTypeFlow = modifyMemberAccountTypeFlow;
     }
 
     @GetMapping("/all")
@@ -45,80 +45,80 @@ public class DemoController {
             @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
             @ApiResponse(code = 404, message = "Not found", response = GeneralResponse.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)})
-    public ResponseEntity<GeneralResponse<List<AccountTypeDto>>> getAll() {
+    public ResponseEntity<GeneralResponse<List<MemberAccountTypeDto>>> getAll() {
 
-        List<AccountTypeDto> accountTypes = fetchAccountTypeFlow.getAllAccountTypes();
+        List<MemberAccountTypeDto> accountTypes = fetchMemberAccountTypeFlow.getAllAccountTypes();
 
-        GeneralResponse<List<AccountTypeDto>> response = new GeneralResponse<>(true, accountTypes);
+        GeneralResponse<List<MemberAccountTypeDto>> response = new GeneralResponse<>(true, accountTypes);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping("")
-    @ApiOperation(value = "Creates a new AccountType.", notes = "Creates a new AccountType in the DB.")
+    @ApiOperation(value = "Creates a new MemberAccountType.", notes = "Creates a new MemberAccountType in the DB.")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "The AccountType was created successfully", response = GeneralResponse.class),
+            @ApiResponse(code = 201, message = "The MemberAccountType was created successfully", response = GeneralResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)})
-    public ResponseEntity<GeneralResponse<AccountTypeDto>> create(
-            @ApiParam(value = "Request body to create a new AccountType.", required = true)
-            @RequestBody AccountTypeDto accountType) {
-        AccountTypeDto accountTypeResponse = createAccountTypeFlow.create(accountType);
-        GeneralResponse<AccountTypeDto> response = new GeneralResponse<>(true, accountTypeResponse);
+    public ResponseEntity<GeneralResponse<MemberAccountTypeDto>> create(
+            @ApiParam(value = "Request body to create a new MemberAccountType.", required = true)
+            @RequestBody MemberAccountTypeDto accountType) {
+        MemberAccountTypeDto accountTypeResponse = createMemberAccountTypeFlow.create(accountType);
+        GeneralResponse<MemberAccountTypeDto> response = new GeneralResponse<>(true, accountTypeResponse);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
     @GetMapping("{mnemonic}")
-    @ApiOperation(value = "Fetches the specified AccountType.", notes = "Fetched the AccountType corresponding to the given mnemonic")
+    @ApiOperation(value = "Fetches the specified MemberAccountType.", notes = "Fetched the MemberAccountType corresponding to the given mnemonic")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "AccountType Found"),
+            @ApiResponse(code = 200, message = "MemberAccountType Found"),
             @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
             @ApiResponse(code = 404, message = "Resource not found", response = GeneralResponse.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class),})
-    public ResponseEntity<GeneralResponse<AccountTypeDto>> getAccountType(
-            @ApiParam(value = "The mnemonic that uniquely identifies the AccountType.",
+    public ResponseEntity<GeneralResponse<MemberAccountTypeDto>> getAccountType(
+            @ApiParam(value = "The mnemonic that uniquely identifies the MemberAccountType.",
             example = "MILES",
             name = "mnemonic",
             required = true)
             @PathVariable("mnemonic") final String mnemonic) {
 
-        AccountTypeDto accountType = fetchAccountTypeFlow.getAccountTypeByMnemonic(mnemonic);
-        GeneralResponse<AccountTypeDto> response = new GeneralResponse<>(true, accountType);
+        MemberAccountTypeDto accountType = fetchMemberAccountTypeFlow.getAccountTypeByMnemonic(mnemonic);
+        GeneralResponse<MemberAccountTypeDto> response = new GeneralResponse<>(true, accountType);
         return new ResponseEntity<>(response, HttpStatus.OK);
 
     }
 
     @DeleteMapping("{mnemonic}")
-    @ApiOperation(value = "Deletes the specified AccountType.",notes = "Deletes the AccountType corresponding to the given mnemonic")
+    @ApiOperation(value = "Deletes the specified MemberAccountType.",notes = "Deletes the MemberAccountType corresponding to the given mnemonic")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "AccountType deleted", response = GeneralResponse.class),
+            @ApiResponse(code = 200, message = "MemberAccountType deleted", response = GeneralResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
             @ApiResponse(code = 404, message = "Resource not found", response = GeneralResponse.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)})
 
-    public ResponseEntity<GeneralResponse<AccountTypeDto>> deleteAccountType(
-            @ApiParam(value = "The mnemonic that uniquely identifies the AccountType.",
+    public ResponseEntity<GeneralResponse<MemberAccountTypeDto>> deleteAccountType(
+            @ApiParam(value = "The mnemonic that uniquely identifies the MemberAccountType.",
                     example = "MILES",
                     name = "mnemonic",
                     required = true)
             @PathVariable("mnemonic") final String mnemonic) {
-        AccountTypeDto accountType = modifyAccountTypeFlow.deleteAccountType(mnemonic);
-        GeneralResponse<AccountTypeDto> response = new GeneralResponse<>(true, accountType);
+        MemberAccountTypeDto accountType = modifyMemberAccountTypeFlow.deleteAccountType(mnemonic);
+        GeneralResponse<MemberAccountTypeDto> response = new GeneralResponse<>(true, accountType);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PutMapping("{mnemonic}")
-    @ApiOperation(value = "Updates the specified AccountType.", notes= "Updates the AccountType corresponding to the given mnemonic")
+    @ApiOperation(value = "Updates the specified MemberAccountType.", notes= "Updates the MemberAccountType corresponding to the given mnemonic")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "AccountType updated", response = GeneralResponse.class),
+            @ApiResponse(code = 200, message = "MemberAccountType updated", response = GeneralResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
             @ApiResponse(code = 404, message = "Resource not found", response = GeneralResponse.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)})
-    public ResponseEntity<GeneralResponse<AccountTypeDto>> updateAccountType(
-            @ApiParam(value = "The mnemonic that uniquely identifies the AccountType.",
+    public ResponseEntity<GeneralResponse<MemberAccountTypeDto>> updateAccountType(
+            @ApiParam(value = "The mnemonic that uniquely identifies the MemberAccountType.",
                     example = "MILES",
                     name = "mnemonic",
                     required = true)
             @PathVariable("mnemonic") final String mnemonic,
-            @ApiParam(value = "The new AccountTypeName that the specified AccountType should be updated with.",
+            @ApiParam(value = "The new AccountTypeName that the specified MemberAccountType should be updated with.",
                     name = "newAccountTypeName",
                     required = true)
 
@@ -131,8 +131,8 @@ public class DemoController {
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
             LocalDate newCreationDate)
             {
-                AccountTypeDto accountType = modifyAccountTypeFlow.updateAccountType(mnemonic, newAccountTypeName, newCreationDate);
-                GeneralResponse<AccountTypeDto> response = new GeneralResponse<>(true, accountType);
+                MemberAccountTypeDto accountType = modifyMemberAccountTypeFlow.updateAccountType(mnemonic, newAccountTypeName, newCreationDate);
+                GeneralResponse<MemberAccountTypeDto> response = new GeneralResponse<>(true, accountType);
                 return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
