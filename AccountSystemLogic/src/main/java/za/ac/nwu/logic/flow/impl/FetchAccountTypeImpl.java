@@ -9,6 +9,8 @@ import za.ac.nwu.logic.flow.FetchAccountTypeFlow;
 import za.ac.nwu.translator.AccountTypeTranslator;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Transactional
@@ -39,13 +41,13 @@ public class FetchAccountTypeImpl implements FetchAccountTypeFlow {
         return null;
     }
 
-    public boolean methodToTest(){
+   public boolean methodToTest(){
         return true;
     }
-//    @Override
-//    public List<AccountTypeDto> getAllAccountTypes(){
+//   @Override
+//   public List<AccountTypeDto> getAllAccountTypes(){
 //        List<AccountTypeDto> accountTypeDtos = new ArrayList<>();
-//        accountTypeDtos.add(new AccountTypeDto("MILES","Miles", LocalDate.now()));
-//        return accountTypeDtos;
-//    }
+//       accountTypeDtos.add(new AccountTypeDto("MILES","Miles", LocalDate.now()));
+//       return accountTypeDtos;
+//  }
 }

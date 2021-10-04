@@ -14,8 +14,9 @@ import java.util.Objects;
 public class AccountTypeDto implements Serializable {
     private static final long serialVersionUID = -534653206480289868L;
 
-private String mnemonic;
-private String accountTypeName;
+    public String mnemonic;
+    public Object currencyTypeName;
+    private String accountTypeName;
 private LocalDate creationDate;
 
     public AccountTypeDto(String mnemonic, String accountTypeName, LocalDate creationDate) {

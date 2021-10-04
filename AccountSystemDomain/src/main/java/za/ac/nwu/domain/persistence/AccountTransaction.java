@@ -22,7 +22,7 @@ public class AccountTransaction implements Serializable{
 
 
     private Long transactionId;
-    private Long accountType;
+    private Long currencyType;
     private Long memberId;
     private Long amount;
     private LocalDate transactionDate;
@@ -31,19 +31,27 @@ public class AccountTransaction implements Serializable{
     @JoinColumn(name = "details_account_tx_details_id")
     private AccountTransactionDetails details;
 
-public AccountTransaction(){
+    @ManyToOne
+    @JoinColumn(name = "account_type_id")
+    private AccountType accountType;
+
+
+    public AccountTransaction(){
 
 }
-    public AccountTransaction(Long transactionId, Long accountType, Long memberId, Long amount, LocalDate transactionDate) {
+    public AccountTransaction(Long transactionId, Long currencyType, Long memberId, Long amount, LocalDate transactionDate) {
         this.transactionId = transactionId;
-        this.accountType = accountType;
+        this.currencyType = currencyType;
         this.memberId = memberId;
         this.amount = amount;
         this.transactionDate = transactionDate;
     }
 
-    public AccountTransaction(Long transactionId, AccountType accountType, Long memberId, Long amount, LocalDate transactionDate) {
+    public AccountTransaction(Long transactionId, CurrencyType currencyType, Long memberId, Long amount, LocalDate transactionDate) {
 
+    }
+
+    public AccountTransaction(Long transactionId, AccountType accountType, Long memberId, Long amount, LocalDate transactionDate) {
     }
 
 
@@ -60,13 +68,13 @@ public AccountTransaction(){
     }
 
 //@ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn (name = "ACCOUNT_TYPE_ID")
-    public Long getAccountType() {
-        return accountType;
+    @JoinColumn (name = "CURRENCY_TYPE_ID")
+    public Long getCurrencyType() {
+        return currencyType;
     }
 
-    public void setAccountType(Long accountType) {
-        this.accountType = accountType;
+    public void setCurrencyType(Long currencyType) {
+        this.currencyType = currencyType;
     }
 
     @Column(name = "MEMBER_ID")
@@ -100,19 +108,19 @@ public AccountTransaction(){
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccountTransaction that = (AccountTransaction) o;
-        return Objects.equals(transactionId, that.transactionId) && Objects.equals(accountType, that.accountType) && Objects.equals(memberId, that.memberId) && Objects.equals(amount, that.amount) && Objects.equals(transactionDate, that.transactionDate);
+        return Objects.equals(transactionId, that.transactionId) && Objects.equals(currencyType, that.currencyType) && Objects.equals(memberId, that.memberId) && Objects.equals(amount, that.amount) && Objects.equals(transactionDate, that.transactionDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(transactionId, accountType, memberId, amount, transactionDate);
+        return Objects.hash(transactionId, currencyType, memberId, amount, transactionDate);
     }
 
     @Override
     public String toString() {
         return "AccountTransaction{" +
                 "transactionId=" + transactionId +
-                ", accountType=" + accountType +
+                ", accountType=" + currencyType +
                 ", memberId=" + memberId +
                 ", amount=" + amount +
                 ", transactionDate=" + transactionDate +
