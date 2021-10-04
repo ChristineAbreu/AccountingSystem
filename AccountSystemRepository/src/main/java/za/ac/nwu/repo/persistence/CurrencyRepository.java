@@ -16,14 +16,16 @@ import java.util.Optional;
     public interface CurrencyRepository extends JpaRepository<CurrencyType, Long> {
 
 
-
-        @Query(value = "SELECT"+
-                "CURRENCY_TYPE_ID,"+
-                "CURRENCY_TYPE_NAME,"+
-                "MNEMONIC"+
-                "FROM"+ "VITRSA_SANDBOX_CURRENCY_TYPE"+
+        @Query(value = "SELECT" +
+                "CURRENCY_TYPE_ID," +
+                "CURRENCY_TYPE_NAME," +
+                "MNEMONIC" +
+                "FROM" + "VITRSA_SANDBOX_CURRENCY_TYPE" +
                 "WHERE MNEMONIC = :mnemonic", nativeQuery = true)
-        MemberAccountType getCURRENCYTypeByMnemonicNativeQuery(String mnemonic);
+        static CurrencyType getCurrencyTypeByMnemonicNativeQuery(String mnemonic) {
+            return null;
+        }
+
         //native queries is not recommended
         @Query(value = "SELECT"+
                 "at"+
@@ -31,7 +33,7 @@ import java.util.Optional;
                 "CurrencyType at"+
                 "MNEMONIC"+
                 "WHERE MNEMONIC = :mnemonic")
-        MemberAccountType getCURRENCYTypeByMnemonic(String mnemonic);
+        CurrencyType getCurrencyTypeByMnemonic(String mnemonic);
 
         @Query(value = "SELECT new za.ac.nwu.domain.dto.CurrencyDto("+
                 "at.mnemonic,"+
@@ -47,11 +49,6 @@ import java.util.Optional;
 
         List<CurrencyType> findAll();
 
-        static CurrencyType getCurrencyTypeByMnemonicNativeQuery(String mnemonic) {
-            return null;
-        }
-
-        CurrencyType getCurrencyTypeByMnemonic(String mnemonic);
 
     CurrencyDto getCurrencyDtoByMnemonic(String mnemonic);
         static void getCurrencyTypeDtoByMnemonic(String miles) {

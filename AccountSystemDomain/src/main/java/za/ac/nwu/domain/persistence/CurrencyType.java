@@ -29,7 +29,11 @@ public class CurrencyType implements Serializable{
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
-    private Set<MemberAccountTransaction> memberAccountTransactions;
+    private Set<CurrencyType> currencyTypes;
+
+    @ManyToOne
+    @JoinColumn(name = "currency_type_id")
+    private CurrencyType currencyType;
 
 
     public CurrencyType(String mnemonic, String currencyTypeName, Long currencyTypeId) {
@@ -56,7 +60,7 @@ public class CurrencyType implements Serializable{
 
     public CurrencyType() {
     }
-    @Column(name = "ACCOUNT_TYPE_ID")
+    @Column(name = "CURRENCY_TYPE_ID")
     public Long getCurrencyTypeId() {
         return currencyTypeId;
     }
@@ -72,7 +76,7 @@ public class CurrencyType implements Serializable{
         this.mnemonic = mnemonic;
     }
 
-    @Column(name = "ACCOUNT_TYPE_NAME")
+    @Column(name = "CURRENCY_TYPE_NAME")
     public String getCurrencyTypeName() {
         return currencyTypeName;
     }
@@ -82,14 +86,14 @@ public class CurrencyType implements Serializable{
 
 
 
-@OneToMany(targetEntity = MemberAccountTransaction.class, fetch = FetchType.LAZY, mappedBy = "currencyType", orphanRemoval = true, cascade = CascadeType.PERSIST)
-public Set<MemberAccountTransaction> getAccountTransactions(){
-       return memberAccountTransactions;
+@OneToMany(targetEntity = CurrencyType.class, fetch = FetchType.LAZY, mappedBy = "currencyType", orphanRemoval = true, cascade = CascadeType.PERSIST)
+public Set<CurrencyType> getCurrencyTypes(){
+       return currencyTypes;
 }
 
 
- public void setAccountTransactions(Set<MemberAccountTransaction> memberAccountTransactions){
-       this.memberAccountTransactions = memberAccountTransactions;
+ public void setCurrencyTransactions(Set<CurrencyType> currencyTypes){
+       this.currencyTypes = currencyTypes;
  }
 
     @Override

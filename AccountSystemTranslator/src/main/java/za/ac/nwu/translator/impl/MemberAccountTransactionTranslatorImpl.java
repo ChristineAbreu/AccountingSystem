@@ -2,6 +2,7 @@ package za.ac.nwu.translator.impl;
 
 import za.ac.nwu.domain.persistence.MemberAccountTransaction;
 import za.ac.nwu.repo.persistence.MemberAccountTransactionRepository;
+import za.ac.nwu.translator.MemberAccountTransactionTranslator;
 
 import java.util.ArrayList;
 import java.util.List;

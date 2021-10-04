@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import za.ac.nwu.domain.dto.CurrencyDto;
 import za.ac.nwu.domain.persistence.CurrencyType;
 import za.ac.nwu.repo.persistence.CurrencyRepository;
+import za.ac.nwu.translator.CurrencyTypeTranslator;
 
 import java.util.ArrayList;
 import java.util.List;

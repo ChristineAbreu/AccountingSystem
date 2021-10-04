@@ -11,4 +11,5 @@ public interface MemberAccountTransactionTranslator {
     List<MemberAccountTransaction> getAllAccountTransactions();
 
     MemberAccountTransaction getAccountTransactionByPk(Long transactionId);
+
 }

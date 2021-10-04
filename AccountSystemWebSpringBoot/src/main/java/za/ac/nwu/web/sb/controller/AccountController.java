@@ -21,7 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("account-type")
-public class DemoController {
+public class AccountController {
 
 
     private final FetchMemberAccountTypeFlow fetchMemberAccountTypeFlow;
@@ -31,8 +31,8 @@ public class DemoController {
 
 
     @Autowired
-    public DemoController(FetchMemberAccountTypeFlow fetchMemberAccountTypeFlow,
-                          @Qualifier("createAccountTypeFlowName") CreateMemberAccountTypeFlow createMemberAccountTypeFlow, ModifyMemberAccountTypeFlow modifyMemberAccountTypeFlow) {
+    public AccountController(FetchMemberAccountTypeFlow fetchMemberAccountTypeFlow,
+                             @Qualifier("createAccountTypeFlowName") CreateMemberAccountTypeFlow createMemberAccountTypeFlow, ModifyMemberAccountTypeFlow modifyMemberAccountTypeFlow) {
         this.fetchMemberAccountTypeFlow = fetchMemberAccountTypeFlow;
         this.createMemberAccountTypeFlow = createMemberAccountTypeFlow;
         this.modifyMemberAccountTypeFlow = modifyMemberAccountTypeFlow;

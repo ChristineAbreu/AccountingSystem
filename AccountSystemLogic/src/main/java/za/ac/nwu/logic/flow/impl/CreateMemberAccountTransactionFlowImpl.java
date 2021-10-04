@@ -10,7 +10,7 @@ import za.ac.nwu.domain.persistence.MemberAccountType;
 import za.ac.nwu.logic.flow.CreateMemberAccountTransactionFlow;
 import za.ac.nwu.logic.flow.FetchMemberAccountTypeFlow;
 import za.ac.nwu.translator.MemberAccountTransactionDetailsTranslator;
-import za.ac.nwu.translator.impl.MemberAccountTransactionTranslator;
+import za.ac.nwu.translator.MemberAccountTransactionTranslator;
 
 @Component
 public class CreateMemberAccountTransactionFlowImpl implements CreateMemberAccountTransactionFlow {

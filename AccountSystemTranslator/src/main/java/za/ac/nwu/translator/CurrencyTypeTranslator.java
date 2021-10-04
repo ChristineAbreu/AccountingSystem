@@ -1,4 +1,4 @@
-package za.ac.nwu.translator.impl;
+package za.ac.nwu.translator;
 
 import za.ac.nwu.domain.dto.CurrencyDto;
 

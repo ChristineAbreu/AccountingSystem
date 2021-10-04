@@ -42,7 +42,7 @@ import static
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class DemoControllerTest {
+public class AccountControllerTest {
     private static final String APP_URL = "/account-system/mvc";
     private static final String ACCOUNT_TYPE_CONTROLLER_URL = APP_URL +
             "/account-type";
@@ -53,7 +53,7 @@ public class DemoControllerTest {
     @Mock
     private ModifyMemberAccountTypeFlow modifyMemberAccountTypeFlow;
     @InjectMocks
-    private DemoController controller;
+    private AccountController controller;
     private MockMvc mockMvc;
     @Before
     public void setUp() {

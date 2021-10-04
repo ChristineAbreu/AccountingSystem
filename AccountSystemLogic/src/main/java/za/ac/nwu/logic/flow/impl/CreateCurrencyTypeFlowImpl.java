@@ -3,7 +3,7 @@ package za.ac.nwu.logic.flow.impl;
 import za.ac.nwu.domain.dto.MemberAccountTypeDto;
 import za.ac.nwu.domain.dto.CurrencyDto;
 import za.ac.nwu.logic.flow.CreateCurrencyTypeFlow;
-import za.ac.nwu.translator.impl.CurrencyTypeTranslator;
+import za.ac.nwu.translator.CurrencyTypeTranslator;
 
 public class CreateCurrencyTypeFlowImpl implements CreateCurrencyTypeFlow {
 
