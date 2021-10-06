@@ -4,7 +4,7 @@ import org.jetbrains.annotations.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import za.ac.nwu.domain.dto.MemberAccountTypeDto;
-import za.ac.nwu.domain.persistence.MemberAccountType;
+import za.ac.nwu.domain.persistence.Member;
 import za.ac.nwu.repo.persistence.MemberAccountTypeRepository;
 import za.ac.nwu.translator.MemberAccountTypeTranslator;
 
@@ -28,8 +28,8 @@ public class MemberMemberAccountTypeTranslatorImpl implements MemberAccountTypeT
 
         List<MemberAccountTypeDto> memberAccountTypeDtos = new ArrayList<>();
         try {
-            for (MemberAccountType memberAccountType : memberAccountTypeRepository.findAll()) {
-                memberAccountTypeDtos.add(new MemberAccountTypeDto(memberAccountType));
+            for (Member member : memberAccountTypeRepository.findAll()) {
+                memberAccountTypeDtos.add(new MemberAccountTypeDto(member));
             }
         } catch (Exception e) {
             throw new RuntimeException("Unable to read from DB", e);
@@ -41,8 +41,8 @@ public class MemberMemberAccountTypeTranslatorImpl implements MemberAccountTypeT
     public MemberAccountTypeDto create(MemberAccountTypeDto memberAccountTypeDto) {
 
         try {
-            MemberAccountType memberAccountType = memberAccountTypeRepository.save(memberAccountTypeDto.getAccountType());
-            return new MemberAccountTypeDto(memberAccountType);
+            Member member = memberAccountTypeRepository.save(memberAccountTypeDto.getAccountType());
+            return new MemberAccountTypeDto(member);
 
         } catch (Exception e) {
             throw new RuntimeException("Unable to read from DB", e);
@@ -53,8 +53,8 @@ public class MemberMemberAccountTypeTranslatorImpl implements MemberAccountTypeT
     @Override
     public MemberAccountTypeDto getAccountTypeByMnemonicNativeQuery(String mnemonic) {
         try {
-            MemberAccountType memberAccountType = memberAccountTypeRepository.getAccountTypeByMnemonicNativeQuery(mnemonic);
-            return new MemberAccountTypeDto(memberAccountType);
+            Member member = memberAccountTypeRepository.getAccountTypeByMnemonicNativeQuery(mnemonic);
+            return new MemberAccountTypeDto(member);
         } catch (Exception e) {
             throw new RuntimeException("Unable to read from the DB", e);
         }
@@ -64,8 +64,8 @@ public class MemberMemberAccountTypeTranslatorImpl implements MemberAccountTypeT
         @Override
         public MemberAccountTypeDto getAccountTypeByMnemonic (String mnemonic) {
             try {
-                MemberAccountType memberAccountType = memberAccountTypeRepository.getAccountTypeByMnemonic(mnemonic);
-                return new MemberAccountTypeDto(memberAccountType);
+                Member member = memberAccountTypeRepository.getAccountTypeByMnemonic(mnemonic);
+                return new MemberAccountTypeDto(member);
             } catch (Exception e) {
                 throw new RuntimeException("Unable to read from the DB", e);
             }

@@ -3,13 +3,13 @@ package za.ac.nwu.domain.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import za.ac.nwu.domain.persistence.MemberAccountType;
+import za.ac.nwu.domain.persistence.Member;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-@ApiModel(value = "MemberAccountType", description = "A DTO that represents the MemberAccountType")
+@ApiModel(value = "Member", description = "A DTO that represents the Member")
 public class MemberAccountTypeDto implements Serializable {
     private static final long serialVersionUID = -534653206480289868L;
 
@@ -24,10 +24,10 @@ private LocalDate creationDate;
         this.creationDate = creationDate;
     }
 
-    public MemberAccountTypeDto(MemberAccountType memberAccountType) {
-        this.setMnemonic(memberAccountType.getMnemonic());
-        this.setAccountTypeName(memberAccountType.getAccountTypeName());
-        this.setCreationDate(memberAccountType.getCreationDate());
+    public MemberAccountTypeDto(Member member) {
+        this.setMnemonic(member.getMnemonic());
+        this.setAccountTypeName(member.getAccountTypeName());
+        this.setCreationDate(member.getCreationDate());
     }
 
     public MemberAccountTypeDto(MemberAccountTypeDto accountType) {
@@ -39,7 +39,7 @@ private LocalDate creationDate;
 
 
     @ApiModelProperty(position = 1,
-            value = "MemberAccountType Mnemonic",
+            value = "Member Mnemonic",
             name = "Mnemonic",
             notes = "Uniquely identifies the account type",
             dataType = "java.lang.String",
@@ -54,9 +54,9 @@ private LocalDate creationDate;
         this.mnemonic = mnemonic;
     }
     @ApiModelProperty(position = 2,
-            value = "MemberAccountType Name",
+            value = "Member Name",
             name = "Name",
-            notes = "The name of the MemberAccountType",
+            notes = "The name of the Member",
             dataType = "java.lang.String",
             example = "MILES",
             required = true)
@@ -68,9 +68,9 @@ private LocalDate creationDate;
         this.accountTypeName = accountTypeName;
     }
     @ApiModelProperty(position = 3,
-            value = "MemberAccountType Creation Date",
+            value = "Member Creation Date",
             name = "CreationDate",
-            notes = "This is the date on which the MemberAccountType was created",
+            notes = "This is the date on which the Member was created",
             dataType = "java.lang.String",
             example = "2020-01-01",
             allowEmptyValue = true,
@@ -92,8 +92,8 @@ private LocalDate creationDate;
     }
 
 @JsonIgnore
-public MemberAccountType getAccountType() {
-return  new MemberAccountType(getMnemonic(),getAccountTypeName(),getCreationDate());
+public Member getAccountType() {
+return  new Member(getMnemonic(),getAccountTypeName(),getCreationDate());
 }
 
     @Override

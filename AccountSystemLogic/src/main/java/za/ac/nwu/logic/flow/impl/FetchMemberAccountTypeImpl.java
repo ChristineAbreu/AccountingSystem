@@ -4,7 +4,7 @@ package za.ac.nwu.logic.flow.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import za.ac.nwu.domain.dto.MemberAccountTypeDto;
-import za.ac.nwu.domain.persistence.MemberAccountType;
+import za.ac.nwu.domain.persistence.Member;
 import za.ac.nwu.logic.flow.FetchMemberAccountTypeFlow;
 import za.ac.nwu.translator.MemberAccountTypeTranslator;
 
@@ -35,7 +35,7 @@ public class FetchMemberAccountTypeImpl implements FetchMemberAccountTypeFlow {
     }
 
     @Override
-    public MemberAccountType getAccountTypeDbEntityByMnemonic(Object accountTypeMnemonic) {
+    public Member getAccountTypeDbEntityByMnemonic(Object accountTypeMnemonic) {
         return null;
     }
 

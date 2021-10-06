@@ -3,13 +3,12 @@ package za.ac.nwu.domain.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import za.ac.nwu.domain.persistence.CurrencyType;
+import za.ac.nwu.domain.persistence.Currency;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Objects;
 
-@ApiModel(value = "CurrencyType", description = "A DTO that represents the CurrencyType")
+@ApiModel(value = "Currency", description = "A DTO that represents the Currency")
 public class CurrencyDto implements Serializable {
     private String mnemonic;
     private String currencyTypeName;
@@ -19,9 +18,9 @@ public class CurrencyDto implements Serializable {
         this.currencyTypeName = currencyTypeName;
     }
 
-    public CurrencyDto(CurrencyType currencyType) {
-        this.setMnemonic(currencyType.getMnemonic());
-        this.setCurrencyTypeName(currencyType.getCurrencyTypeName());
+    public CurrencyDto(Currency currency) {
+        this.setMnemonic(currency.getMnemonic());
+        this.setCurrencyTypeName(currency.getCurrencyTypeName());
     }
 
     public CurrencyDto(CurrencyDto currencyType) {
@@ -52,9 +51,9 @@ public class CurrencyDto implements Serializable {
     }
 
     @ApiModelProperty(position = 2,
-            value = "CurrencyType Name",
+            value = "Currency Name",
             name = "Name",
-            notes = "The name of the CurrencyType",
+            notes = "The name of the Currency",
             dataType = "java.lang.String",
             example = "MILES",
             required = true)
@@ -72,8 +71,8 @@ public class CurrencyDto implements Serializable {
     }
 
     @JsonIgnore
-    public CurrencyType getCurrencyType() {
-        return new CurrencyType(getMnemonic(), getCurrencyTypeName());
+    public Currency getCurrencyType() {
+        return new Currency(getMnemonic(), getCurrencyTypeName());
     }
 
     @Override

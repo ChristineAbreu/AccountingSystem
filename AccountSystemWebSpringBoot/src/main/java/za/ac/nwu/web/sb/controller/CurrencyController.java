@@ -52,27 +52,27 @@ public class CurrencyController {
     }
 
     @PostMapping("")
-    @ApiOperation(value = "Creates a new CurrencyType.", notes = "Creates a new CurrencyType in the DB.")
+    @ApiOperation(value = "Creates a new Currency.", notes = "Creates a new Currency in the DB.")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "The CurrencyType was created successfully", response = GeneralResponse.class),
+            @ApiResponse(code = 201, message = "The Currency was created successfully", response = GeneralResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)})
     public ResponseEntity<GeneralResponse<CurrencyDto>> create(
-            @ApiParam(value = "Request body to create a new CurrencyType.", required = true)
+            @ApiParam(value = "Request body to create a new Currency.", required = true)
             @RequestBody CurrencyDto currencyType) {
         CurrencyDto currencyTypeResponse = createCurrencyTypeFlow.create(currencyType);
         GeneralResponse<CurrencyDto> response = new GeneralResponse<>(true, currencyTypeResponse);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
     @GetMapping("{mnemonic}")
-    @ApiOperation(value = "Fetches the specified CurrencyType.", notes = "Fetched the CurrencyType corresponding to the given mnemonic")
+    @ApiOperation(value = "Fetches the specified Currency.", notes = "Fetched the Currency corresponding to the given mnemonic")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "CurrencyType Found"),
+            @ApiResponse(code = 200, message = "Currency Found"),
             @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
             @ApiResponse(code = 404, message = "Resource not found", response = GeneralResponse.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class),})
     public ResponseEntity<GeneralResponse<CurrencyDto>> getCurrencyType(
-            @ApiParam(value = "The mnemonic that uniquely identifies the CurrencyType.",
+            @ApiParam(value = "The mnemonic that uniquely identifies the Currency.",
                     example = "MILES",
                     name = "mnemonic",
                     required = true)
@@ -85,15 +85,15 @@ public class CurrencyController {
     }
 
     @DeleteMapping("{mnemonic}")
-    @ApiOperation(value = "Deletes the specified CurrencyType.",notes = "Deletes the CurrencyType corresponding to the given mnemonic")
+    @ApiOperation(value = "Deletes the specified Currency.",notes = "Deletes the Currency corresponding to the given mnemonic")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "CurrencyType deleted", response = GeneralResponse.class),
+            @ApiResponse(code = 200, message = "Currency deleted", response = GeneralResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
             @ApiResponse(code = 404, message = "Resource not found", response = GeneralResponse.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)})
 
     public ResponseEntity<GeneralResponse<CurrencyDto>> deleteCurrencyType(
-            @ApiParam(value = "The mnemonic that uniquely identifies the CurrencyType.",
+            @ApiParam(value = "The mnemonic that uniquely identifies the Currency.",
                     example = "MILES",
                     name = "mnemonic",
                     required = true)
@@ -104,19 +104,19 @@ public class CurrencyController {
     }
 
     @PutMapping("{mnemonic}")
-    @ApiOperation(value = "Updates the specified CurrencyType.", notes= "Updates the CurrencyType corresponding to the given mnemonic")
+    @ApiOperation(value = "Updates the specified Currency.", notes= "Updates the Currency corresponding to the given mnemonic")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "CurrencyType updated", response = GeneralResponse.class),
+            @ApiResponse(code = 200, message = "Currency updated", response = GeneralResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
             @ApiResponse(code = 404, message = "Resource not found", response = GeneralResponse.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)})
     public ResponseEntity<GeneralResponse<CurrencyDto>> updateCurrencyType(
-            @ApiParam(value = "The mnemonic that uniquely identifies the CurrencyType.",
+            @ApiParam(value = "The mnemonic that uniquely identifies the Currency.",
                     example = "MILES",
                     name = "mnemonic",
                     required = true)
             @PathVariable("mnemonic") final String mnemonic,
-            @ApiParam(value = "The new CurrencyTypeName that the specified CurrencyType should be updated with.",
+            @ApiParam(value = "The new CurrencyTypeName that the specified Currency should be updated with.",
                     name = "newCurrencyTypeName",
                     required = true)
 

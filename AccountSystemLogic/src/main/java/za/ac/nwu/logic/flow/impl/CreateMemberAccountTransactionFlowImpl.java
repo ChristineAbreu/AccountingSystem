@@ -4,9 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import za.ac.nwu.domain.dto.MemberAccountTransactionDto;
+import za.ac.nwu.domain.persistence.Member;
 import za.ac.nwu.domain.persistence.MemberAccountTransaction;
 import za.ac.nwu.domain.persistence.MemberAccountTransactionDetails;
-import za.ac.nwu.domain.persistence.MemberAccountType;
 import za.ac.nwu.logic.flow.CreateMemberAccountTransactionFlow;
 import za.ac.nwu.logic.flow.FetchMemberAccountTypeFlow;
 import za.ac.nwu.translator.MemberAccountTransactionDetailsTranslator;
@@ -41,13 +41,13 @@ outputForLogging = memberAccountTransactionDto.getDetails().toString();
 
             LOGGER.info("The input object was {} and the Details are {}", memberAccountTransactionDto.outputForLogging);
         }
-            MemberAccountType memberAccountType = fetchMemberAccountTypeFlow.getAccountTypeDbEntityByMnemonic(
+            Member member = fetchMemberAccountTypeFlow.getAccountTypeDbEntityByMnemonic(
                     memberAccountTransactionDto.getAccountTypeMnemonic());
-            LOGGER.debug("Got MemberAccountType for {} and the AccountTypeID is {}", memberAccountTransactionDto.getAccountTypeMnemonic(), memberAccountType.getAccountTypeId());
+            LOGGER.debug("Got Member for {} and the AccountTypeID is {}", memberAccountTransactionDto.getAccountTypeMnemonic(), member.getAccountTypeId());
             if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Got MemberAccountType for {} and the AccountTypeID is {}", memberAccountTransactionDto.getAccountTypeMnemonic(), memberAccountType.getAccountTypeId());
+                LOGGER.info("Got Member for {} and the AccountTypeID is {}", memberAccountTransactionDto.getAccountTypeMnemonic(), member.getAccountTypeId());
             }
-            MemberAccountTransaction memberAccountTransaction = memberAccountTransactionDto.buildAccountTransaction(memberAccountType);
+            MemberAccountTransaction memberAccountTransaction = memberAccountTransactionDto.buildAccountTransaction(member);
 
             MemberAccountTransaction createdMemberAccountTransaction = memberAccountTransactionTranslator.save(memberAccountTransaction);
 

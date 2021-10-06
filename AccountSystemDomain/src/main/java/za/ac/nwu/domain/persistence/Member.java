@@ -14,7 +14,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "ACCOUNT_TYPE", schema = "VITRSA_SANDBOX")
-public class MemberAccountType implements Serializable{
+public class Member implements Serializable{
 
 
     @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "VITRSA_SANDBOX.VIT_RSA_GENERIC_SEQ", allocationSize = 1 )
@@ -36,7 +36,7 @@ public class MemberAccountType implements Serializable{
     //private Set<MemberAccountTransaction> memberAccountTransactions;
 
 
-    public MemberAccountType(String mnemonic, String accountTypeName, LocalDate creationDate) {
+    public Member(String mnemonic, String accountTypeName, LocalDate creationDate) {
 
     }
 
@@ -49,14 +49,14 @@ public class MemberAccountType implements Serializable{
     }
 
 
-    public MemberAccountType(Long accountTypeId, String mnemonic, String accountTypeName, LocalDate creationDate) {
+    public Member(Long accountTypeId, String mnemonic, String accountTypeName, LocalDate creationDate) {
         this.accountTypeId = accountTypeId;
         this.mnemonic = mnemonic;
         this.accountTypeName = accountTypeName;
         this.creationDate = creationDate;
     }
 
-    public MemberAccountType() {
+    public Member() {
     }
     @Column(name = "ACCOUNT_TYPE_ID")
     public Long getAccountTypeId() {
@@ -91,7 +91,7 @@ public class MemberAccountType implements Serializable{
         this.creationDate = creationDate;
     }
 
-@OneToMany(targetEntity = MemberAccountTransaction.class, fetch = FetchType.LAZY, mappedBy = "memberAccountType", orphanRemoval = true, cascade = CascadeType.PERSIST)
+@OneToMany(targetEntity = MemberAccountTransaction.class, fetch = FetchType.LAZY, mappedBy = "member", orphanRemoval = true, cascade = CascadeType.PERSIST)
 public Set<MemberAccountTransaction> getAccountTransactions(){
        return memberAccountTransactions;
 }
@@ -105,7 +105,7 @@ public Set<MemberAccountTransaction> getAccountTransactions(){
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MemberAccountType that = (MemberAccountType) o;
+        Member that = (Member) o;
         return Objects.equals(accountTypeId, that.accountTypeId) && Objects.equals(mnemonic, that.mnemonic) && Objects.equals(accountTypeName, that.accountTypeName) && Objects.equals(creationDate, that.creationDate);
     }
 
@@ -116,7 +116,7 @@ public Set<MemberAccountTransaction> getAccountTransactions(){
 
     @Override
     public String toString() {
-        return "MemberAccountType{" +
+        return "Member{" +
                 "accountTypeId=" + accountTypeId +
                 ", mnemonic=" + mnemonic +
                 ", accountTypeName=" + accountTypeName +

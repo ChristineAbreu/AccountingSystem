@@ -5,7 +5,7 @@ package za.ac.nwu.logic.flow;
 
 
 import za.ac.nwu.domain.dto.MemberAccountTypeDto;
-import za.ac.nwu.domain.persistence.MemberAccountType;
+import za.ac.nwu.domain.persistence.Member;
 
 import java.util.List;
 
@@ -14,5 +14,5 @@ List<MemberAccountTypeDto> getAllAccountTypes();
 
     MemberAccountTypeDto getAccountTypeByMnemonic(String mnemonic);
 
-    MemberAccountType getAccountTypeDbEntityByMnemonic(Object accountTypeMnemonic);
+    Member getAccountTypeDbEntityByMnemonic(Object accountTypeMnemonic);
 }

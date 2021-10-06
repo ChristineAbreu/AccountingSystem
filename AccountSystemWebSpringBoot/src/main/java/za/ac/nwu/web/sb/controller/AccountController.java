@@ -54,27 +54,27 @@ public class AccountController {
     }
 
     @PostMapping("")
-    @ApiOperation(value = "Creates a new MemberAccountType.", notes = "Creates a new MemberAccountType in the DB.")
+    @ApiOperation(value = "Creates a new Member.", notes = "Creates a new Member in the DB.")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "The MemberAccountType was created successfully", response = GeneralResponse.class),
+            @ApiResponse(code = 201, message = "The Member was created successfully", response = GeneralResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)})
     public ResponseEntity<GeneralResponse<MemberAccountTypeDto>> create(
-            @ApiParam(value = "Request body to create a new MemberAccountType.", required = true)
+            @ApiParam(value = "Request body to create a new Member.", required = true)
             @RequestBody MemberAccountTypeDto accountType) {
         MemberAccountTypeDto accountTypeResponse = createMemberAccountTypeFlow.create(accountType);
         GeneralResponse<MemberAccountTypeDto> response = new GeneralResponse<>(true, accountTypeResponse);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
     @GetMapping("{mnemonic}")
-    @ApiOperation(value = "Fetches the specified MemberAccountType.", notes = "Fetched the MemberAccountType corresponding to the given mnemonic")
+    @ApiOperation(value = "Fetches the specified Member.", notes = "Fetched the Member corresponding to the given mnemonic")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "MemberAccountType Found"),
+            @ApiResponse(code = 200, message = "Member Found"),
             @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
             @ApiResponse(code = 404, message = "Resource not found", response = GeneralResponse.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class),})
     public ResponseEntity<GeneralResponse<MemberAccountTypeDto>> getAccountType(
-            @ApiParam(value = "The mnemonic that uniquely identifies the MemberAccountType.",
+            @ApiParam(value = "The mnemonic that uniquely identifies the Member.",
             example = "MILES",
             name = "mnemonic",
             required = true)
@@ -87,15 +87,15 @@ public class AccountController {
     }
 
     @DeleteMapping("{mnemonic}")
-    @ApiOperation(value = "Deletes the specified MemberAccountType.",notes = "Deletes the MemberAccountType corresponding to the given mnemonic")
+    @ApiOperation(value = "Deletes the specified Member.",notes = "Deletes the Member corresponding to the given mnemonic")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "MemberAccountType deleted", response = GeneralResponse.class),
+            @ApiResponse(code = 200, message = "Member deleted", response = GeneralResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
             @ApiResponse(code = 404, message = "Resource not found", response = GeneralResponse.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)})
 
     public ResponseEntity<GeneralResponse<MemberAccountTypeDto>> deleteAccountType(
-            @ApiParam(value = "The mnemonic that uniquely identifies the MemberAccountType.",
+            @ApiParam(value = "The mnemonic that uniquely identifies the Member.",
                     example = "MILES",
                     name = "mnemonic",
                     required = true)
@@ -106,19 +106,19 @@ public class AccountController {
     }
 
     @PutMapping("{mnemonic}")
-    @ApiOperation(value = "Updates the specified MemberAccountType.", notes= "Updates the MemberAccountType corresponding to the given mnemonic")
+    @ApiOperation(value = "Updates the specified Member.", notes= "Updates the Member corresponding to the given mnemonic")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "MemberAccountType updated", response = GeneralResponse.class),
+            @ApiResponse(code = 200, message = "Member updated", response = GeneralResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
             @ApiResponse(code = 404, message = "Resource not found", response = GeneralResponse.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)})
     public ResponseEntity<GeneralResponse<MemberAccountTypeDto>> updateAccountType(
-            @ApiParam(value = "The mnemonic that uniquely identifies the MemberAccountType.",
+            @ApiParam(value = "The mnemonic that uniquely identifies the Member.",
                     example = "MILES",
                     name = "mnemonic",
                     required = true)
             @PathVariable("mnemonic") final String mnemonic,
-            @ApiParam(value = "The new AccountTypeName that the specified MemberAccountType should be updated with.",
+            @ApiParam(value = "The new AccountTypeName that the specified Member should be updated with.",
                     name = "newAccountTypeName",
                     required = true)
 

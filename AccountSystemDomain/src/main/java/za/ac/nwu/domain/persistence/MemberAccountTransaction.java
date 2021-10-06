@@ -32,7 +32,7 @@ public class MemberAccountTransaction implements Serializable{
 
     @ManyToOne
     @JoinColumn(name = "account_type_id")
-    private MemberAccountType memberAccountType;
+    private Member member;
 
 
     public MemberAccountTransaction(){
@@ -46,11 +46,11 @@ public class MemberAccountTransaction implements Serializable{
         this.transactionDate = transactionDate;
     }
 
-    public MemberAccountTransaction(Long transactionId, CurrencyType currencyType, Long memberId, Long amount, LocalDate transactionDate) {
+    public MemberAccountTransaction(Long transactionId, Currency currency, Long memberId, Long amount, LocalDate transactionDate) {
 
     }
 
-    public MemberAccountTransaction(Long transactionId, MemberAccountType memberAccountType, Long memberId, Long amount, LocalDate transactionDate) {
+    public MemberAccountTransaction(Long transactionId, Member member, Long memberId, Long amount, LocalDate transactionDate) {
     }
 
 
@@ -119,7 +119,7 @@ public class MemberAccountTransaction implements Serializable{
     public String toString() {
         return "MemberAccountTransaction{" +
                 "transactionId=" + transactionId +
-                ", memberAccountType=" + currencyType +
+                ", member=" + currencyType +
                 ", memberId=" + memberId +
                 ", amount=" + amount +
                 ", transactionDate=" + transactionDate +

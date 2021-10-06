@@ -1,7 +1,7 @@
 package za.ac.nwu.domain.dto;
 
+import za.ac.nwu.domain.persistence.Member;
 import za.ac.nwu.domain.persistence.MemberAccountTransaction;
-import za.ac.nwu.domain.persistence.MemberAccountType;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -45,14 +45,14 @@ public class MemberAccountTransactionDto implements Serializable {
     public MemberAccountTransactionDto(MemberAccountTransaction createdMemberAccountTransaction) {
     }
 
-    public MemberAccountTransaction AccountTransactionDto(MemberAccountTransaction memberAccountTransaction, MemberAccountType memberAccountType) {
+    public MemberAccountTransaction AccountTransactionDto(MemberAccountTransaction memberAccountTransaction, Member member) {
         this.transactionId = memberAccountTransaction.getTransactionId();
-       // this.accountTypeMnemonic = memberAccountTransaction.getMemberAccountType().getMnemonic();
+       // this.accountTypeMnemonic = memberAccountTransaction.getMember().getMnemonic();
         this.memberId = memberAccountTransaction.getMemberId();
         this.amount = memberAccountTransaction.getAmount();
         this.transactionDate = memberAccountTransaction.getTransactionDate();
         if(null != memberAccountTransaction.getDetails()){
-            return new MemberAccountTransaction(this.getTransactionId(), memberAccountType, this.getMemberId(),
+            return new MemberAccountTransaction(this.getTransactionId(), member, this.getMemberId(),
                     this.getAmount(), this.getTransactionDate());
         }
         return memberAccountTransaction;
@@ -90,8 +90,8 @@ public class MemberAccountTransactionDto implements Serializable {
         return details;
     }
 
-    public MemberAccountTransaction buildAccountTransaction(MemberAccountType memberAccountType) {
-        return new MemberAccountTransaction(this.getTransactionId(), memberAccountType,this.getMemberId(),this.getAmount(),this.getTransactionDate());
+    public MemberAccountTransaction buildAccountTransaction(Member member) {
+        return new MemberAccountTransaction(this.getTransactionId(), member,this.getMemberId(),this.getAmount(),this.getTransactionDate());
     }
 
 

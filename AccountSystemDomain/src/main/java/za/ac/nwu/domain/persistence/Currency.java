@@ -17,7 +17,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "CURRENCY_TYPE", schema = "VITRSA_SANDBOX")
-public class CurrencyType implements Serializable{
+public class Currency implements Serializable{
 
 
     @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "VITRSA_SANDBOX.VIT_RSA_GENERIC_SEQ", allocationSize = 1 )
@@ -29,18 +29,18 @@ public class CurrencyType implements Serializable{
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
-    private Set<CurrencyType> currencyTypes;
+    private Set<Currency> currencies;
 
     @ManyToOne
     @JoinColumn(name = "currency_type_id")
-    private CurrencyType currencyType;
+    private Currency currency;
 
 
-    public CurrencyType(String mnemonic, String currencyTypeName, Long currencyTypeId) {
+    public Currency(String mnemonic, String currencyTypeName, Long currencyTypeId) {
 
     }
 
-    public CurrencyType(String mnemonic, String currencyTypeName) {
+    public Currency(String mnemonic, String currencyTypeName) {
     }
 
     public Long getId() {
@@ -52,13 +52,13 @@ public class CurrencyType implements Serializable{
     }
 
 
-    public CurrencyType(Long currencyTypeId, String mnemonic, String currencyTypeName) {
+    public Currency(Long currencyTypeId, String mnemonic, String currencyTypeName) {
         this.currencyTypeId = currencyTypeId;
         this.mnemonic = mnemonic;
         this.currencyTypeName = currencyTypeName;
     }
 
-    public CurrencyType() {
+    public Currency() {
     }
     @Column(name = "CURRENCY_TYPE_ID")
     public Long getCurrencyTypeId() {
@@ -86,21 +86,21 @@ public class CurrencyType implements Serializable{
 
 
 
-@OneToMany(targetEntity = CurrencyType.class, fetch = FetchType.LAZY, mappedBy = "currencyType", orphanRemoval = true, cascade = CascadeType.PERSIST)
-public Set<CurrencyType> getCurrencyTypes(){
-       return currencyTypes;
+@OneToMany(targetEntity = Currency.class, fetch = FetchType.LAZY, mappedBy = "currency", orphanRemoval = true, cascade = CascadeType.PERSIST)
+public Set<Currency> getCurrencies(){
+       return currencies;
 }
 
 
- public void setCurrencyTransactions(Set<CurrencyType> currencyTypes){
-       this.currencyTypes = currencyTypes;
+ public void setCurrencyTransactions(Set<Currency> currencies){
+       this.currencies = currencies;
  }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CurrencyType that = (CurrencyType) o;
+        Currency that = (Currency) o;
         return Objects.equals(currencyTypeId, that.currencyTypeId) && Objects.equals(mnemonic, that.mnemonic) && Objects.equals(currencyTypeName, that.currencyTypeName) ;
     }
 
@@ -111,7 +111,7 @@ public Set<CurrencyType> getCurrencyTypes(){
 
     @Override
     public String toString() {
-        return "CurrencyType{" +
+        return "Currency{" +
                 "currencyTypeId=" + currencyTypeId +
                 ", mnemonic=" + mnemonic +
                 ", currencyTypeName=" + currencyTypeName +

@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import za.ac.nwu.domain.dto.PartnerDto;
-import za.ac.nwu.domain.persistence.PartnerType;
+import za.ac.nwu.domain.persistence.Partner;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,17 +18,17 @@ public class PartnerRepositoryImpl implements PartnerRepository {
             "MNEMONIC" +
             "FROM" + "VITRSA_SANDBOX_PARTNER_TYPE" +
             "WHERE MNEMONIC = :mnemonic", nativeQuery = true)
-    public PartnerType getPartnerTypeByMnemonicNativeQuery(String mnemonic) {
+    public Partner getPartnerTypeByMnemonicNativeQuery(String mnemonic) {
         return null;
     }
 
     @Override
-    public PartnerType getPartnerTypeByMnemonic(String mnemonic) {
+    public Partner getPartnerTypeByMnemonic(String mnemonic) {
         return null;
     }
 
     @Override
-    public Optional<PartnerType> findById(Long aLong) {
+    public Optional<Partner> findById(Long aLong) {
         return Optional.empty();
     }
 
@@ -38,22 +38,22 @@ public class PartnerRepositoryImpl implements PartnerRepository {
     }
 
     @Override
-    public List<PartnerType> findAll() {
+    public List<Partner> findAll() {
         return null;
     }
 
     @Override
-    public List<PartnerType> findAll(Sort sort) {
+    public List<Partner> findAll(Sort sort) {
         return null;
     }
 
     @Override
-    public Page<PartnerType> findAll(Pageable pageable) {
+    public Page<Partner> findAll(Pageable pageable) {
         return null;
     }
 
     @Override
-    public List<PartnerType> findAllById(Iterable<Long> longs) {
+    public List<Partner> findAllById(Iterable<Long> longs) {
         return null;
     }
 
@@ -68,12 +68,12 @@ public class PartnerRepositoryImpl implements PartnerRepository {
     }
 
     @Override
-    public void delete(PartnerType entity) {
+    public void delete(Partner entity) {
 
     }
 
     @Override
-    public void deleteAll(Iterable<? extends PartnerType> entities) {
+    public void deleteAll(Iterable<? extends Partner> entities) {
 
     }
 
@@ -83,12 +83,12 @@ public class PartnerRepositoryImpl implements PartnerRepository {
     }
 
     @Override
-    public <S extends PartnerType> S save(S entity) {
+    public <S extends Partner> S save(S entity) {
         return null;
     }
 
     @Override
-    public <S extends PartnerType> List<S> saveAll(Iterable<S> entities) {
+    public <S extends Partner> List<S> saveAll(Iterable<S> entities) {
         return null;
     }
 
@@ -98,12 +98,12 @@ public class PartnerRepositoryImpl implements PartnerRepository {
     }
 
     @Override
-    public <S extends PartnerType> S saveAndFlush(S entity) {
+    public <S extends Partner> S saveAndFlush(S entity) {
         return null;
     }
 
     @Override
-    public void deleteInBatch(Iterable<PartnerType> entities) {
+    public void deleteInBatch(Iterable<Partner> entities) {
 
     }
 
@@ -113,37 +113,37 @@ public class PartnerRepositoryImpl implements PartnerRepository {
     }
 
     @Override
-    public PartnerType getOne(Long aLong) {
+    public Partner getOne(Long aLong) {
         return null;
     }
 
     @Override
-    public <S extends PartnerType> Optional<S> findOne(Example<S> example) {
+    public <S extends Partner> Optional<S> findOne(Example<S> example) {
         return Optional.empty();
     }
 
     @Override
-    public <S extends PartnerType> List<S> findAll(Example<S> example) {
+    public <S extends Partner> List<S> findAll(Example<S> example) {
         return null;
     }
 
     @Override
-    public <S extends PartnerType> List<S> findAll(Example<S> example, Sort sort) {
+    public <S extends Partner> List<S> findAll(Example<S> example, Sort sort) {
         return null;
     }
 
     @Override
-    public <S extends PartnerType> Page<S> findAll(Example<S> example, Pageable pageable) {
+    public <S extends Partner> Page<S> findAll(Example<S> example, Pageable pageable) {
         return null;
     }
 
     @Override
-    public <S extends PartnerType> long count(Example<S> example) {
+    public <S extends Partner> long count(Example<S> example) {
         return 0;
     }
 
     @Override
-    public <S extends PartnerType> boolean exists(Example<S> example) {
+    public <S extends Partner> boolean exists(Example<S> example) {
         return false;
     }
 

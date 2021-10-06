@@ -5,7 +5,7 @@ import org.jetbrains.annotations.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import za.ac.nwu.domain.dto.CurrencyDto;
-import za.ac.nwu.domain.persistence.CurrencyType;
+import za.ac.nwu.domain.persistence.Currency;
 import za.ac.nwu.repo.persistence.CurrencyRepository;
 import za.ac.nwu.translator.CurrencyTypeTranslator;
 
@@ -32,8 +32,8 @@ public class CurrencyTranslatorImpl implements CurrencyTypeTranslator {
 
         List<CurrencyDto> currencyDtos = new ArrayList<>();
         try {
-            for (CurrencyType currencyType : currencyRepository.findAll()) {
-                currencyDtos.add(new CurrencyDto(currencyType));
+            for (Currency currency : currencyRepository.findAll()) {
+                currencyDtos.add(new CurrencyDto(currency));
             }
         } catch (Exception e) {
             throw new RuntimeException("Unable to read from DB", e);
@@ -47,8 +47,8 @@ public class CurrencyTranslatorImpl implements CurrencyTypeTranslator {
     public CurrencyDto create(CurrencyDto currencyDto) {
 
         try {
-            CurrencyType currencyType = currencyRepository.save(currencyDto.getCurrencyType());
-            return new CurrencyDto(currencyType);
+            Currency currency = currencyRepository.save(currencyDto.getCurrencyType());
+            return new CurrencyDto(currency);
 
         } catch (Exception e) {
             throw new RuntimeException("Unable to read from DB", e);
@@ -60,8 +60,8 @@ public class CurrencyTranslatorImpl implements CurrencyTypeTranslator {
     @Override
     public CurrencyDto getCurrencyTypeByMnemonicNativeQuery(String mnemonic) {
         try {
-            CurrencyType currencyType = CurrencyRepository.getCurrencyTypeByMnemonicNativeQuery(mnemonic);
-            return new CurrencyDto(currencyType);
+            Currency currency = CurrencyRepository.getCurrencyTypeByMnemonicNativeQuery(mnemonic);
+            return new CurrencyDto(currency);
         } catch (Exception e) {
             throw new RuntimeException("Unable to read from the DB", e);
         }
@@ -71,8 +71,8 @@ public class CurrencyTranslatorImpl implements CurrencyTypeTranslator {
     @Override
     public CurrencyDto getCurrencyTypeByMnemonic (String mnemonic) {
         try {
-            CurrencyType currencyType = currencyRepository.getCurrencyTypeByMnemonic(mnemonic);
-            return new CurrencyDto(currencyType);
+            Currency currency = currencyRepository.getCurrencyTypeByMnemonic(mnemonic);
+            return new CurrencyDto(currency);
         } catch (Exception e) {
             throw new RuntimeException("Unable to read from the DB", e);
         }

@@ -9,14 +9,14 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import za.ac.nwu.domain.dto.CurrencyDto;
-import za.ac.nwu.domain.persistence.CurrencyType;
+import za.ac.nwu.domain.persistence.Currency;
 import za.ac.nwu.repo.config.RepositoryTestConfig;
 
 import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @ContextConfiguration(classes = {RepositoryTestConfig.class})
-public class CurrencyTypeRepositoryTest {
+public class CurrencyRepositoryTest {
     @Autowired
     CurrencyRepository currencyRepository;
     @Before
@@ -29,34 +29,34 @@ public class CurrencyTypeRepositoryTest {
     }
     @Test
     public void getCurrencyTypeByMnemonicNativeQueryMiles() {
-        CurrencyType miles = CurrencyRepository.getCurrencyTypeByMnemonicNativeQuery("MILES");
+        Currency miles = CurrencyRepository.getCurrencyTypeByMnemonicNativeQuery("MILES");
         assertNotNull(miles);
         assertEquals("MILES", miles.getMnemonic());
     }
 
     @Test
     public void getCurrencyTypeByMnemonicNativeQuery() {
-        CurrencyType miles = CurrencyRepository.getCurrencyTypeByMnemonicNativeQuery("MILESSSSS");
+        Currency miles = CurrencyRepository.getCurrencyTypeByMnemonicNativeQuery("MILESSSSS");
         assertNull(miles);
     }
 
     @Test
     public void getCurrencyTypeByMnemonicMiles() {
-        CurrencyType miles = currencyRepository.getCurrencyTypeByMnemonic("MILES");
+        Currency miles = currencyRepository.getCurrencyTypeByMnemonic("MILES");
         assertNotNull(miles);
         assertEquals("MILES", miles.getMnemonic());
     }
 
     @Test
     public void getCurrencyTypeByMnemonicPlay() {
-        CurrencyType miles = currencyRepository.getCurrencyTypeByMnemonic("PLAY");
+        Currency miles = currencyRepository.getCurrencyTypeByMnemonic("PLAY");
         assertNotNull(miles);
         assertEquals("PLAY", miles.getMnemonic());
     }
 
     @Test
     public void getCurrencyTypeByMnemonic() {
-        CurrencyType miles =  CurrencyRepository.getCurrencyTypeByMnemonicNativeQuery("R");
+        Currency miles =  CurrencyRepository.getCurrencyTypeByMnemonicNativeQuery("R");
         assertNull(miles);
     }
 

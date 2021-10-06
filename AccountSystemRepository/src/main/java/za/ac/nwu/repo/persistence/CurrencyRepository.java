@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import za.ac.nwu.domain.dto.CurrencyDto;
-import za.ac.nwu.domain.persistence.CurrencyType;
+import za.ac.nwu.domain.persistence.Currency;
 
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.Optional;
 
 
     @Repository
-    public interface CurrencyRepository extends JpaRepository<CurrencyType, Long> {
+    public interface CurrencyRepository extends JpaRepository<Currency, Long> {
 
 
         @Query(value = "SELECT" +
@@ -21,7 +21,7 @@ import java.util.Optional;
                 "MNEMONIC" +
                 "FROM" + "VITRSA_SANDBOX_CURRENCY_TYPE" +
                 "WHERE MNEMONIC = :mnemonic", nativeQuery = true)
-        static CurrencyType getCurrencyTypeByMnemonicNativeQuery(String mnemonic) {
+        static Currency getCurrencyTypeByMnemonicNativeQuery(String mnemonic) {
             return null;
         }
 
@@ -29,24 +29,24 @@ import java.util.Optional;
         @Query(value = "SELECT"+
                 "at"+
                 "FROM"+
-                "CurrencyType at"+
+                "Currency at"+
                 "MNEMONIC"+
                 "WHERE MNEMONIC = :mnemonic")
-        CurrencyType getCurrencyTypeByMnemonic(String mnemonic);
+        Currency getCurrencyTypeByMnemonic(String mnemonic);
 
         @Query(value = "SELECT new za.ac.nwu.domain.dto.CurrencyDto("+
                 "at.mnemonic,"+
                 "at.currencyTypeName,"+
                 "FROM"+
-                "CurrencyType at"+
+                "Currency at"+
                 "WHERE at. mnemonic =: mnemonic")
         CurrencyDto getCurrencyDtoByMnemonic(String mnemonic);
 
         @Override
-        Optional<CurrencyType> findById(Long aLong);
+        Optional<Currency> findById(Long aLong);
 
 
-        List<CurrencyType> findAll();
+        List<Currency> findAll();
 
 
 }
