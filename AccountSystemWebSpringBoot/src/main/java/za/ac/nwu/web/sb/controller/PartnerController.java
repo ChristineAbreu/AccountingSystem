@@ -52,27 +52,27 @@ public class PartnerController {
     }
 
     @PostMapping("")
-    @ApiOperation(value = "Creates a new Partner.", notes = "Creates a new Partner in the DB.")
+    @ApiOperation(value = "Creates a new PartnerType.", notes = "Creates a new PartnerType in the DB.")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "The Partner was created successfully", response = GeneralResponse.class),
+            @ApiResponse(code = 201, message = "The PartnerType was created successfully", response = GeneralResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)})
     public ResponseEntity<GeneralResponse<PartnerDto>> create(
-            @ApiParam(value = "Request body to create a new Partner.", required = true)
+            @ApiParam(value = "Request body to create a new PartnerType.", required = true)
             @RequestBody PartnerDto partnerType) {
         PartnerDto partnerTypeResponse = createPartnerTypeFlow.create(partnerType);
         GeneralResponse<PartnerDto> response = new GeneralResponse<>(true, partnerTypeResponse);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
     @GetMapping("{mnemonic}")
-    @ApiOperation(value = "Fetches the specified Partner.", notes = "Fetched the Partner corresponding to the given mnemonic")
+    @ApiOperation(value = "Fetches the specified PartnerType.", notes = "Fetched the PartnerType corresponding to the given mnemonic")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Partner Found"),
+            @ApiResponse(code = 200, message = "PartnerType Found"),
             @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
             @ApiResponse(code = 404, message = "Resource not found", response = GeneralResponse.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class),})
     public ResponseEntity<GeneralResponse<PartnerDto>> getPartnerType(
-            @ApiParam(value = "The mnemonic that uniquely identifies the Partner.",
+            @ApiParam(value = "The mnemonic that uniquely identifies the PartnerType.",
                     example = "MILES",
                     name = "mnemonic",
                     required = true)
@@ -85,15 +85,15 @@ public class PartnerController {
     }
 
     @DeleteMapping("{mnemonic}")
-    @ApiOperation(value = "Deletes the specified Partner.",notes = "Deletes the Partner corresponding to the given mnemonic")
+    @ApiOperation(value = "Deletes the specified PartnerType.",notes = "Deletes the PartnerType corresponding to the given mnemonic")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Partner deleted", response = GeneralResponse.class),
+            @ApiResponse(code = 200, message = "PartnerType deleted", response = GeneralResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
             @ApiResponse(code = 404, message = "Resource not found", response = GeneralResponse.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)})
 
     public ResponseEntity<GeneralResponse<PartnerDto>> deletePartnerType(
-            @ApiParam(value = "The mnemonic that uniquely identifies the Partner.",
+            @ApiParam(value = "The mnemonic that uniquely identifies the PartnerType.",
                     example = "MILES",
                     name = "mnemonic",
                     required = true)
@@ -104,19 +104,19 @@ public class PartnerController {
     }
 
     @PutMapping("{mnemonic}")
-    @ApiOperation(value = "Updates the specified Partner.", notes= "Updates the Partner corresponding to the given mnemonic")
+    @ApiOperation(value = "Updates the specified PartnerType.", notes= "Updates the PartnerType corresponding to the given mnemonic")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Partner updated", response = GeneralResponse.class),
+            @ApiResponse(code = 200, message = "PartnerType updated", response = GeneralResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
             @ApiResponse(code = 404, message = "Resource not found", response = GeneralResponse.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)})
     public ResponseEntity<GeneralResponse<PartnerDto>> updatePartnerType(
-            @ApiParam(value = "The mnemonic that uniquely identifies the Partner.",
+            @ApiParam(value = "The mnemonic that uniquely identifies the PartnerType.",
                     example = "MILES",
                     name = "mnemonic",
                     required = true)
             @PathVariable("mnemonic") final String mnemonic,
-            @ApiParam(value = "The new PartnerTypeName that the specified Partner should be updated with.",
+            @ApiParam(value = "The new PartnerTypeName that the specified PartnerType should be updated with.",
                     name = "newPartnerTypeName",
                     required = true)
 

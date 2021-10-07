@@ -3,12 +3,13 @@ package za.ac.nwu.domain.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import za.ac.nwu.domain.persistence.Partner;
+import za.ac.nwu.domain.persistence.PartnerType;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
-@ApiModel(value = "Partner", description = "A DTO that represents the Partner")
+@ApiModel(value = "PartnerType", description = "A DTO that represents the PartnerType")
 public class PartnerDto implements Serializable {
     private String mnemonic;
     private String partnerName;
@@ -18,9 +19,9 @@ public class PartnerDto implements Serializable {
         this.partnerName = partnerName;
     }
 
-    public PartnerDto(Partner partner) {
-        this.setMnemonic(partner.getMnemonic());
-        this.setPartnerName(partner.getPartnerName());
+    public PartnerDto(PartnerType partnerType) {
+        this.setMnemonic(partnerType.getMnemonic());
+        this.setPartnerName(partnerType.getPartnerName());
     }
 
     public PartnerDto(PartnerDto partnerType) {
@@ -52,9 +53,9 @@ public class PartnerDto implements Serializable {
     }
 
     @ApiModelProperty(position = 2,
-            value = "Partner Name",
+            value = "PartnerType Name",
             name = "Name",
-            notes = "The name of the Partner",
+            notes = "The name of the PartnerType",
             dataType = "java.lang.String",
             example = "MILES",
             required = true)
@@ -72,8 +73,8 @@ public class PartnerDto implements Serializable {
     }
 
     @JsonIgnore
-    public Partner getPartnerType() {
-        return new Partner(getMnemonic(), getPartnerName());
+    public PartnerType getPartnerType() {
+        return new PartnerType(getMnemonic(), getPartnerName());
     }
 
     @Override

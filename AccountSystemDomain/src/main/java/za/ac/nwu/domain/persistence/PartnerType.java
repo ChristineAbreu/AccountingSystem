@@ -17,7 +17,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "PARTNER_TYPE", schema = "VITRSA_SANDBOX")
-public class Partner implements Serializable{
+public class PartnerType implements Serializable{
 
 
     @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "VITRSA_SANDBOX.VIT_RSA_GENERIC_SEQ", allocationSize = 1 )
@@ -29,18 +29,18 @@ public class Partner implements Serializable{
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
-    private Set<Partner> partners;
+    private Set<PartnerType> partnerTypes;
 
     @ManyToOne
     @JoinColumn(name = "partner_type_id")
-    private Partner partner;
+    private PartnerType partnerType;
 
 
-    public Partner(String mnemonic, String partnerName, Long partnerTypeId) {
+    public PartnerType(String mnemonic, String partnerName, Long partnerTypeId) {
 
     }
 
-    public Partner(String mnemonic, String partnerName) {
+    public PartnerType(String mnemonic, String partnerName) {
     }
 
     public Long getId() {
@@ -52,13 +52,13 @@ public class Partner implements Serializable{
     }
 
 
-    public Partner(Long partnerTypeId, String mnemonic, String partnerName) {
+    public PartnerType(Long partnerTypeId, String mnemonic, String partnerName) {
         this.partnerTypeId = partnerTypeId;
         this.mnemonic = mnemonic;
         this.partnerName = partnerName;
     }
 
-    public Partner() {
+    public PartnerType() {
     }
     @Column(name = "PARTNER_TYPE_ID")
     public Long getPartnerTypeId() {
@@ -86,21 +86,21 @@ public class Partner implements Serializable{
 
 
 
-    @OneToMany(targetEntity = Partner.class, fetch = FetchType.LAZY, mappedBy = "partner", orphanRemoval = true, cascade = CascadeType.PERSIST)
-    public Set<Partner> getPartners(){
-        return partners;
+    @OneToMany(targetEntity = PartnerType.class, fetch = FetchType.LAZY, mappedBy = "partnerType", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    public Set<PartnerType> getPartnerTypes(){
+        return partnerTypes;
     }
 
 
-    public void setPartners(Set<Partner> partners){
-        this.partners = partners;
+    public void setPartnerTypes(Set<PartnerType> partnerTypes){
+        this.partnerTypes = partnerTypes;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Partner that = (Partner) o;
+        PartnerType that = (PartnerType) o;
         return Objects.equals(partnerTypeId, that.partnerTypeId) && Objects.equals(mnemonic, that.mnemonic) && Objects.equals(partnerName, that.partnerName) ;
     }
 
@@ -111,7 +111,7 @@ public class Partner implements Serializable{
 
     @Override
     public String toString() {
-        return "Partner{" +
+        return "PartnerType{" +
                 "partnerTypeId=" + partnerTypeId +
                 ", mnemonic=" + mnemonic +
                 ", partnerName=" + partnerName +

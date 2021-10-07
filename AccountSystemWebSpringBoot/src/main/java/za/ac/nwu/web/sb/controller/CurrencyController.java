@@ -36,7 +36,7 @@ public class CurrencyController {
         this.modifyCurrencyTypeFlow = modifyCurrencyTypeFlow;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/getAllCurrencyTypes")
     @ApiOperation(value = "Gets all the configured Currency types.", notes = "Returns a list of Currency types")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Currency types returned", response = GeneralResponse.class),

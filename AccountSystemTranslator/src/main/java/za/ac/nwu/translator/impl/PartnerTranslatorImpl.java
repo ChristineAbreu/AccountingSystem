@@ -4,7 +4,7 @@ import org.jetbrains.annotations.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import za.ac.nwu.domain.dto.PartnerDto;
-import za.ac.nwu.domain.persistence.Partner;
+import za.ac.nwu.domain.persistence.PartnerType;
 import za.ac.nwu.repo.persistence.PartnerRepository;
 import za.ac.nwu.translator.PartnerTranslator;
 
@@ -31,8 +31,8 @@ public class PartnerTranslatorImpl implements PartnerTranslator {
 
         List<PartnerDto> partnerDtos = new ArrayList<>();
         try {
-            for (Partner partner : partnerRepository.findAll()) {
-                partnerDtos.add(new PartnerDto(partner));
+            for (PartnerType partnerType : partnerRepository.findAll()) {
+                partnerDtos.add(new PartnerDto(partnerType));
             }
         } catch (Exception e) {
             throw new RuntimeException("Unable to read from DB", e);
@@ -46,8 +46,8 @@ public class PartnerTranslatorImpl implements PartnerTranslator {
     public PartnerDto create(PartnerDto partnerDto) {
 
         try {
-            Partner partner = partnerRepository.save(partnerDto.getPartnerType());
-            return new PartnerDto(partner);
+            PartnerType partnerType = partnerRepository.save(partnerDto.getPartnerType());
+            return new PartnerDto(partnerType);
 
         } catch (Exception e) {
             throw new RuntimeException("Unable to read from DB", e);
@@ -59,8 +59,8 @@ public class PartnerTranslatorImpl implements PartnerTranslator {
     @Override
     public PartnerDto getPartnerTypeByMnemonicNativeQuery(String mnemonic) {
         try {
-            Partner partner = PartnerRepository.getPartnerTypeByMnemonicNativeQuery(mnemonic);
-            return new PartnerDto(partner);
+            PartnerType partnerType = PartnerRepository.getPartnerTypeByMnemonicNativeQuery(mnemonic);
+            return new PartnerDto(partnerType);
         } catch (Exception e) {
             throw new RuntimeException("Unable to read from the DB", e);
         }
@@ -70,8 +70,8 @@ public class PartnerTranslatorImpl implements PartnerTranslator {
     @Override
     public PartnerDto getPartnerTypeByMnemonic (String mnemonic) {
         try {
-            Partner partner = partnerRepository.getPartnerTypeByMnemonic(mnemonic);
-            return new PartnerDto(partner);
+            PartnerType partnerType = partnerRepository.getPartnerTypeByMnemonic(mnemonic);
+            return new PartnerDto(partnerType);
         } catch (Exception e) {
             throw new RuntimeException("Unable to read from the DB", e);
         }
