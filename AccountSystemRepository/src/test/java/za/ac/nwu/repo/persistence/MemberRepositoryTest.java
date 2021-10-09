@@ -11,7 +11,7 @@
   import za.ac.nwu.domain.persistence.Member;
   import za.ac.nwu.repo.config.RepositoryTestConfig;
 
-  import java.lang.reflect.Member;
+
 
   import static org.junit.Assert.*;
   @RunWith(SpringRunner.class)

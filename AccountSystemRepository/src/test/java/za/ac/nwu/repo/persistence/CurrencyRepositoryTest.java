@@ -12,8 +12,7 @@
  import za.ac.nwu.domain.persistence.Currency;
  import za.ac.nwu.repo.config.RepositoryTestConfig;
 
- import static org.junit.Assert.assertNotNull;
- import static org.junit.Assert.assertNull;
+ import static org.junit.Assert.*;
 
  @RunWith(SpringRunner.class)
  @DataJpaTest
