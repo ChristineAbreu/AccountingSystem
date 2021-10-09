@@ -15,13 +15,15 @@ import java.util.Optional;
 public interface PartnerRepository extends JpaRepository<PartnerType, Long> {
 
     //native queries is not recommended
-    @Query(value = "SELECT"+
-            "at"+
-            "FROM"+
-            "PartnerType at"+
-            "MNEMONIC"+
+    @Query(value = "SELECT" +
+            "at" +
+            "FROM" +
+            "PartnerType at" +
+            "MNEMONIC" +
             "WHERE MNEMONIC = :mnemonic")
-    PartnerType getPartnerTypeByMnemonicNativeQuery(String mnemonic);
+    static PartnerType getPartnerTypeByMnemonicNativeQuery(String mnemonic) {
+        return null;
+    }
 
     @Query(value = "SELECT new za.ac.nwu.domain.dto.PartnerDto("+
             "at.mnemonic,"+
