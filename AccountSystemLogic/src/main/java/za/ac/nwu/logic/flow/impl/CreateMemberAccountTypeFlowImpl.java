@@ -1,5 +1,7 @@
 package za.ac.nwu.logic.flow.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import za.ac.nwu.domain.dto.MemberAccountTypeDto;
 
@@ -13,7 +15,7 @@ import java.time.LocalDate;
 @Component("createAccountTypeFlowName")
 public class CreateMemberAccountTypeFlowImpl implements CreateMemberAccountTypeFlow {
     private final MemberAccountTypeTranslator memberAccountTypeTranslator;
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(CreateMemberAccountTypeFlowImpl.class);
     public CreateMemberAccountTypeFlowImpl(MemberAccountTypeTranslator memberAccountTypeTranslator) {
         this.memberAccountTypeTranslator = memberAccountTypeTranslator;
 

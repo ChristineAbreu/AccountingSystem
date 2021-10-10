@@ -1,5 +1,7 @@
 package za.ac.nwu.logic.flow.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import za.ac.nwu.domain.dto.CurrencyDto;
 import za.ac.nwu.logic.flow.FetchCurrencyTypeFlow;
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FetchCurrencyTypeImpl implements FetchCurrencyTypeFlow {
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(FetchCurrencyTypeImpl.class);
     private final CurrencyTypeTranslator currencyTypeTranslator;
 
     @Autowired

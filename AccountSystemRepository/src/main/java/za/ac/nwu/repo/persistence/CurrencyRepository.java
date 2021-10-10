@@ -19,7 +19,7 @@ import java.util.Optional;
                 "CURRENCY_TYPE_ID," +
                 "CURRENCY_TYPE_NAME," +
                 "MNEMONIC" +
-                "FROM" + "VITRSA_SANDBOX_CURRENCY_TYPE" +
+                "FROM" + "CHRISTINE_CURRENCY_TYPE" +
                 "WHERE MNEMONIC = :mnemonic", nativeQuery = true)
         static Currency getCurrencyTypeByMnemonicNativeQuery(String mnemonic) {
             return null;

@@ -42,6 +42,32 @@ public class CurrencyTranslatorImpl implements CurrencyTypeTranslator {
     }
 
 
+    @Override
+    public CurrencyDto delete(CurrencyDto currencyDto) {
+
+        try {
+            Currency currency = currencyRepository.save(currencyDto.getCurrencyType());
+            return new CurrencyDto(currency);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Unable to read from DB", e);
+        }
+
+    }
+
+    @Override
+    public CurrencyDto add(CurrencyDto currencyDto) {
+
+        try {
+            Currency currency = currencyRepository.save(currencyDto.getCurrencyType());
+            return new CurrencyDto(currency);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Unable to read from DB", e);
+        }
+
+    }
+
 
     @Override
     public CurrencyDto create(CurrencyDto currencyDto) {

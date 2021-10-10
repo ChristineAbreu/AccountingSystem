@@ -16,7 +16,7 @@ public class PartnerRepositoryImpl implements PartnerRepository {
             "PARTNER_TYPE_ID," +
             "PARTNER_TYPE_NAME," +
             "MNEMONIC" +
-            "FROM" + "VITRSA_SANDBOX_PARTNER_TYPE" +
+            "FROM" + "CHRISTINE_PARTNER_TYPE" +
             "WHERE MNEMONIC = :mnemonic", nativeQuery = true)
     public PartnerType getPartnerTypeByMnemonicNativeQuery(String mnemonic) {
         return null;

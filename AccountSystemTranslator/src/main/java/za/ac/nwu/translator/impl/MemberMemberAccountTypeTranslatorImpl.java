@@ -49,7 +49,18 @@ public class MemberMemberAccountTypeTranslatorImpl implements MemberAccountTypeT
         }
 
     }
+    @Override
+    public MemberAccountTypeDto delete(MemberAccountTypeDto memberAccountTypeDto) {
 
+        try {
+            Member member = memberAccountTypeRepository.save(memberAccountTypeDto.getAccountType());
+            return new MemberAccountTypeDto(member);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Unable to read from DB", e);
+        }
+
+    }
     @Override
     public MemberAccountTypeDto getAccountTypeByMnemonicNativeQuery(String mnemonic) {
         try {

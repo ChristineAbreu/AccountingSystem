@@ -1,5 +1,7 @@
 package za.ac.nwu.logic.flow.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import za.ac.nwu.domain.dto.MemberAccountTransactionDto;
 import za.ac.nwu.domain.persistence.MemberAccountTransaction;
 import za.ac.nwu.logic.flow.FetchMemberAccountTransactionFlow;
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FetchMemberAccountTransactionFlowImpl implements FetchMemberAccountTransactionFlow {
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(FetchMemberAccountTransactionFlowImpl.class);
     private MemberAccountTransactionTranslator translator;
 
     public FetchMemberAccountTransactionFlowImpl(MemberAccountTransactionTranslator translator){

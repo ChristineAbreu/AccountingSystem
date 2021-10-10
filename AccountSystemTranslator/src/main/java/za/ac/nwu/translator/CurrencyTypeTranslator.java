@@ -9,6 +9,10 @@ public interface CurrencyTypeTranslator {
 
     List<CurrencyDto> getAllCurrencyTypes();
 
+    CurrencyDto delete(CurrencyDto currencyDto);
+
+    CurrencyDto add(CurrencyDto currencyDto);
+
     CurrencyDto create(CurrencyDto currencyDto);
 
     CurrencyDto getCurrencyTypeByMnemonicNativeQuery(String mnemonic);

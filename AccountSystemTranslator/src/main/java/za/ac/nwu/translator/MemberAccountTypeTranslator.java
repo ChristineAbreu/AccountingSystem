@@ -9,6 +9,8 @@ public interface MemberAccountTypeTranslator {
 
     MemberAccountTypeDto create(MemberAccountTypeDto accountType);
 
+    MemberAccountTypeDto delete(MemberAccountTypeDto memberAccountTypeDto);
+
     MemberAccountTypeDto getAccountTypeByMnemonicNativeQuery(String mnemonic);
     MemberAccountTypeDto getAccountTypeByMnemonic(String mnemonic);
     MemberAccountTypeDto getAccountTypeDtoByMnemonic(String mnemonic);
