@@ -149,6 +149,7 @@
             <version>0.8.3</version>
             <configuration>
 <!-- TODO: Use: "mvn clean install -DhaltOnFailure=false" to continue builds locally that fail test coverage -->
+                <!--suppress UnresolvedMavenProperty -->
                 <haltOnFailure>${haltOnFailure}</haltOnFailure>
                 <rules>
                     <rule>
