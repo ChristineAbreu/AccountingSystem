@@ -148,13 +148,11 @@
             <artifactId>jacoco-maven-plugin</artifactId>
             <version>0.8.3</version>
             <configuration>
-
-
-
+<!-- TODO: Use: "mvn clean install -DhaltOnFailure=false" to continue builds locally that fail test coverage -->
                 <haltOnFailure>${haltOnFailure}</haltOnFailure>
                 <rules>
                     <rule>
-                        <element>
+                        <element>CLASS</element>
                             <excludes>
                                 <exclude>za.ac.nwu.domain.dto.*</exclude>
                                 <exclude>za.ac.nwu.logic.LogicConfig</exclude>
@@ -177,11 +175,7 @@
                                     <minimum>0.8</minimum>
                                 </limit>
                             </limits>
-                        </element>
-
                     </rule>
-
-
                 </rules>
             </configuration>
                     <executions>
