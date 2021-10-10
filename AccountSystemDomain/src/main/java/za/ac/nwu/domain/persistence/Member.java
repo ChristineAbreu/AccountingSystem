@@ -5,19 +5,19 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
-import javax.persistence.*;
 
 
 @Entity
-@Table(name = "ACCOUNT_TYPE", schema = "VITRSA_SANDBOX")
+@Table(name = "ACCOUNT_TYPE", schema = "CHRISTINE")
 public class Member implements Serializable{
 
 
-    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "VITRSA_SANDBOX.VIT_RSA_GENERIC_SEQ", allocationSize = 1 )
+    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "CHRISTINE.VIT_RSA_GENERIC_SEQ", allocationSize = 1 )
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VIT_RSA_GENERIC_SEQ")
 
     private Long accountTypeId;

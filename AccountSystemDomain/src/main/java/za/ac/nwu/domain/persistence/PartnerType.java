@@ -16,11 +16,11 @@ import java.util.Set;
 @ToString
 
 @Entity
-@Table(name = "PARTNER_TYPE", schema = "VITRSA_SANDBOX")
+@Table(name = "PARTNER_TYPE", schema = "CHRISTINE")
 public class PartnerType implements Serializable{
 
 
-    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "VITRSA_SANDBOX.VIT_RSA_GENERIC_SEQ", allocationSize = 1 )
+    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "CHRISTINE.VIT_RSA_GENERIC_SEQ", allocationSize = 1 )
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VIT_RSA_GENERIC_SEQ")
 
     private Long partnerTypeId;

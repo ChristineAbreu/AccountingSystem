@@ -13,7 +13,7 @@ import java.util.Objects;
 @ToString
 
 @Entity
-@Table(name = "ACCOUNT_TYPE", schema = "VITRSA_SANDBOX")
+@Table(name = "ACCOUNT_TYPE", schema = "CHRISTINE")
 public class MemberAccountTransaction implements Serializable{
 
 
@@ -55,7 +55,7 @@ public class MemberAccountTransaction implements Serializable{
 
 
     @Id
-@SequenceGenerator(name = "GENERIC_SEQ", sequenceName = "VITRSA_SANDBOX.GENERIC_SEQ",allocationSize = 1)
+@SequenceGenerator(name = "GENERIC_SEQ", sequenceName = "CHRISTINE.GENERIC_SEQ",allocationSize = 1)
 @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GENERIC_SEQ")
     @Column(name = "TX_ID")
     public Long getTransactionId() {
